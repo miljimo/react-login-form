@@ -41,7 +41,7 @@ var LoginForm = React.createClass({
               "display":(this.props.imageSrc && this.props.imageSrc !="")?"block":"none",
 
           	},
-               "arrowWrapper":{
+            "arrow":{
                     padding:"0px",
                     "margin":"0px",
                     "border":"0px solid blue",
@@ -51,7 +51,8 @@ var LoginForm = React.createClass({
                     "visibility":(this.props.imageSrc && this.props.imageSrc !="")?"visible":"hidden",
                     "display":(this.props.imageSrc && this.props.imageSrc !="")?"block":"none",
 
-               },
+            },
+
           	form:{
           		"border":"2px solid rgba(210, 72, 70,1)",
           		"margin":"0px auto",
@@ -84,7 +85,11 @@ var LoginForm = React.createClass({
                               "backgroundSize":"15px 15px",
                               "backgroundRepeat":"no-repeat",
                          }
-                    }
+                    },
+
+                  "button":{
+
+                  }
 
                    
           	}
@@ -97,11 +102,11 @@ var LoginForm = React.createClass({
      	   return (
      	   	   <div  ref='login' style={style} className={this.props.className} onFocus={__onfocus.bind(this)} onBlur={__onBlur.bind(this)} >
      	   	      <div style={style.image}>
-                       <Image  src={this.props.imageSrc || ""}/>
+                       <Image   src={this.props.imageSrc || ""}/>
      	   	      </div>
 
-                    <div style={style.arrowWrapper}>
-                        <Arrow  />
+                    <div style={style.arrow}>
+                        <Arrow   />
                     </div>
           	   	<div style={style.form}>
                       <div style={style.form.fields}>
@@ -109,7 +114,7 @@ var LoginForm = React.createClass({
                           <LineEdit onTextChange={__textChange.bind(this)}  ref="password" className={cssStyle.password}  password={true} style={style.form.fields.password} placeholder={this.props.passwordLabel}/>
                       </div>
 
-                         <Button text="LOGIN"  onClick ={__onSubmit.bind(this)} />
+                         <Button text="LOGIN"  style={style.form.button} onClick ={__onSubmit.bind(this)} />
           	   	</div>
      	   	    
      	   	   </div>

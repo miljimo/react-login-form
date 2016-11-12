@@ -48,23 +48,9 @@
 
 	var React = __webpack_require__(1);
 	var ReactDom = __webpack_require__(34);
-	var LoginForm = __webpack_require__(172);
+	var App = __webpack_require__(184);
 
-	var style = {
-		margin: "10px auto"
-	};
-
-	var onsubmit = function onsubmit(event) {
-
-		if (event) {
-			var username = event.username;
-			var password = event.password;
-			console.log(event);
-		}
-	};
-	var image = "C:/Users/Obaro/Desktop/FirstReactApp/src/master/images/obaro.png";
-
-	ReactDom.render(React.createElement(LoginForm, { imageSrc: image, style: style, usernameLabel: "Username", passwordLabel: "Password", onSubmit: onsubmit }), document.getElementById("app"));
+	ReactDom.render(React.createElement(App, null), document.getElementById("app"));
 
 /***/ },
 /* 1 */
@@ -21456,7 +21442,7 @@
 	          return { focus: false };
 	     },
 	     render: function render() {
-	          var _arrowWrapper;
+	          var _arrow;
 
 	          var style = Object.assign({
 	               "backgroundColor": "rgba(234, 86, 84,1)",
@@ -21480,12 +21466,13 @@
 	                    "display": this.props.imageSrc && this.props.imageSrc != "" ? "block" : "none"
 
 	               },
-	               "arrowWrapper": (_arrowWrapper = {
+	               "arrow": (_arrow = {
 	                    padding: "0px",
 	                    "margin": "0px",
 	                    "border": "0px solid blue",
 	                    "textAlign": "center"
-	               }, _defineProperty(_arrowWrapper, "margin", "10px auto 0px auto"), _defineProperty(_arrowWrapper, "overflow", "hidden"), _defineProperty(_arrowWrapper, "visibility", this.props.imageSrc && this.props.imageSrc != "" ? "visible" : "hidden"), _defineProperty(_arrowWrapper, "display", this.props.imageSrc && this.props.imageSrc != "" ? "block" : "none"), _arrowWrapper),
+	               }, _defineProperty(_arrow, "margin", "10px auto 0px auto"), _defineProperty(_arrow, "overflow", "hidden"), _defineProperty(_arrow, "visibility", this.props.imageSrc && this.props.imageSrc != "" ? "visible" : "hidden"), _defineProperty(_arrow, "display", this.props.imageSrc && this.props.imageSrc != "" ? "block" : "none"), _arrow),
+
 	               form: {
 	                    "border": "2px solid rgba(210, 72, 70,1)",
 	                    "margin": "0px auto",
@@ -21517,7 +21504,9 @@
 	                              "backgroundSize": "15px 15px",
 	                              "backgroundRepeat": "no-repeat"
 	                         }
-	                    }
+	                    },
+
+	                    "button": {}
 
 	               }
 
@@ -21533,7 +21522,7 @@
 	               ),
 	               React.createElement(
 	                    "div",
-	                    { style: style.arrowWrapper },
+	                    { style: style.arrow },
 	                    React.createElement(Arrow, null)
 	               ),
 	               React.createElement(
@@ -21545,7 +21534,7 @@
 	                         React.createElement(LineEdit, { onTextChange: __textChange.bind(this), ref: "username", className: cssStyle.username, style: style.form.fields.username, placeholder: this.props.usernameLabel }),
 	                         React.createElement(LineEdit, { onTextChange: __textChange.bind(this), ref: "password", className: cssStyle.password, password: true, style: style.form.fields.password, placeholder: this.props.passwordLabel })
 	                    ),
-	                    React.createElement(Button, { text: "LOGIN", onClick: __onSubmit.bind(this) })
+	                    React.createElement(Button, { text: "LOGIN", style: style.form.button, onClick: __onSubmit.bind(this) })
 	               )
 	          );
 	     }
@@ -22389,6 +22378,48 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
+
+/***/ },
+/* 184 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+	var LoginForm = __webpack_require__(172);
+
+	var App = React.createClass({
+		displayName: "App",
+
+
+		getInitialState: function getInitialState() {
+			return { image: null };
+		},
+		render: function render() {
+			return React.createElement(LoginForm, { onTextChange: onChange.bind(this), imageSrc: this.state.image, usernameLabel: "Username", passwordLabel: "Password", onSubmit: onsubmit.bind(this) });
+		}
+	});
+
+	var onsubmit = function onsubmit(event) {
+
+		if (event) {
+			var username = event.username;
+			var password = event.password;
+			console.log(event);
+		}
+	};
+
+	var onChange = function onChange(event) {
+		if (!this.state.image && event.username == 'obaro') {
+			this.setState({ image: "C:/Users/Obaro/Desktop/FirstReactApp/src/master/images/obaro.png" });
+		} else {
+			if (this.state.image != null) {
+				this.setState({ image: null });
+			}
+		}
+	};
+
+	module.exports = App;
 
 /***/ }
 /******/ ]);
