@@ -4,9 +4,9 @@
 
 #snapshot
 
-![Alt text](/../lib/login.png?raw=true "LogIn Form")
+![ScreenShot](https://github.com/miljimo/react-login-form/blob/master/lib/login.png)
 
- #installation
+#install
 
  npm install --save react-jimo-login-form
 
