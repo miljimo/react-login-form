@@ -1,0 +1,14 @@
+
+
+:local(.username){
+
+ background-image:url("../../../master/icons/user.png");
+	
+}
+
+
+:local(.password){
+	 background-image:url("../../../master/icons/password.png");
+	
+
+}
