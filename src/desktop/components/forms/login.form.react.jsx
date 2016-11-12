@@ -22,10 +22,12 @@ var LoginForm = React.createClass({
           var style  =Object.assign({
           	"backgroundColor":"rgba(234, 86, 84,1)",
           	"width":"300px",
-          	"height":"250px",
+          	"height":"auto",
           	"position":"relative",
           	"display":"block",
           	"overflow":"hidden",
+            "paddingBottom":"20px",
+            "paddingTop":"20px",
 
           	image:{
           		 width:"70px",
@@ -35,6 +37,8 @@ var LoginForm = React.createClass({
           		"borderRadius":"100%",
           		"position":"relative",
           		"backgroundColor":"rgba(210, 72, 70,0.8)",
+              "visibility":(this.props.imageSrc && this.props.imageSrc !="")?"visible":"hidden",
+              "display":(this.props.imageSrc && this.props.imageSrc !="")?"block":"none",
 
           	},
                "arrowWrapper":{
@@ -44,6 +48,8 @@ var LoginForm = React.createClass({
                     "textAlign":"center",
                     "margin":"10px auto 0px auto",
                     "overflow":"hidden",
+                    "visibility":(this.props.imageSrc && this.props.imageSrc !="")?"visible":"hidden",
+                    "display":(this.props.imageSrc && this.props.imageSrc !="")?"block":"none",
 
                },
           	form:{
@@ -91,7 +97,7 @@ var LoginForm = React.createClass({
      	   return (
      	   	   <div  ref='login' style={style} className={this.props.className} onFocus={__onfocus.bind(this)} onBlur={__onBlur.bind(this)} >
      	   	      <div style={style.image}>
-                       <Image  src="C:\Users\Obaro\Desktop\FirstReactApp\src\master\images\obaro.png"/>
+                       <Image  src={this.props.imageSrc || ""}/>
      	   	      </div>
 
                     <div style={style.arrowWrapper}>

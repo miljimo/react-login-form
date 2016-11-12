@@ -62,8 +62,9 @@
 			console.log(event);
 		}
 	};
+	var image = "C:/Users/Obaro/Desktop/FirstReactApp/src/master/images/obaro.png";
 
-	ReactDom.render(React.createElement(LoginForm, { style: style, usernameLabel: "Username", passwordLabel: "Password", onSubmit: onsubmit }), document.getElementById("app"));
+	ReactDom.render(React.createElement(LoginForm, { imageSrc: image, style: style, usernameLabel: "Username", passwordLabel: "Password", onSubmit: onsubmit }), document.getElementById("app"));
 
 /***/ },
 /* 1 */
@@ -21460,10 +21461,12 @@
 	          var style = Object.assign({
 	               "backgroundColor": "rgba(234, 86, 84,1)",
 	               "width": "300px",
-	               "height": "250px",
+	               "height": "auto",
 	               "position": "relative",
 	               "display": "block",
 	               "overflow": "hidden",
+	               "paddingBottom": "20px",
+	               "paddingTop": "20px",
 
 	               image: {
 	                    width: "70px",
@@ -21472,7 +21475,9 @@
 	                    "border": "2px solid rgba(210, 72, 70,1)",
 	                    "borderRadius": "100%",
 	                    "position": "relative",
-	                    "backgroundColor": "rgba(210, 72, 70,0.8)"
+	                    "backgroundColor": "rgba(210, 72, 70,0.8)",
+	                    "visibility": this.props.imageSrc && this.props.imageSrc != "" ? "visible" : "hidden",
+	                    "display": this.props.imageSrc && this.props.imageSrc != "" ? "block" : "none"
 
 	               },
 	               "arrowWrapper": (_arrowWrapper = {
@@ -21480,7 +21485,7 @@
 	                    "margin": "0px",
 	                    "border": "0px solid blue",
 	                    "textAlign": "center"
-	               }, _defineProperty(_arrowWrapper, "margin", "10px auto 0px auto"), _defineProperty(_arrowWrapper, "overflow", "hidden"), _arrowWrapper),
+	               }, _defineProperty(_arrowWrapper, "margin", "10px auto 0px auto"), _defineProperty(_arrowWrapper, "overflow", "hidden"), _defineProperty(_arrowWrapper, "visibility", this.props.imageSrc && this.props.imageSrc != "" ? "visible" : "hidden"), _defineProperty(_arrowWrapper, "display", this.props.imageSrc && this.props.imageSrc != "" ? "block" : "none"), _arrowWrapper),
 	               form: {
 	                    "border": "2px solid rgba(210, 72, 70,1)",
 	                    "margin": "0px auto",
@@ -21524,7 +21529,7 @@
 	               React.createElement(
 	                    "div",
 	                    { style: style.image },
-	                    React.createElement(Image, { src: "C:\\Users\\Obaro\\Desktop\\FirstReactApp\\src\\master\\images\\obaro.png" })
+	                    React.createElement(Image, { src: this.props.imageSrc || "" })
 	               ),
 	               React.createElement(
 	                    "div",
@@ -22032,7 +22037,7 @@
 	var content = __webpack_require__(179);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(181)(content, {});
+	var update = __webpack_require__(183)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -22057,7 +22062,7 @@
 
 
 	// module
-	exports.push([module.id, "\r\n\r\n._2zfTn7M8AZPVs6A3D4jdiH{\r\n\r\n background-image:url(" + __webpack_require__(183) + ");\r\n\t\r\n}\r\n\r\n\r\n._3rLQ1zPDP_DjEm8ppfVpa8{\r\n\t background-image:url(" + __webpack_require__(182) + ");\r\n\t\r\n\r\n}", ""]);
+	exports.push([module.id, "\r\n\r\n._2zfTn7M8AZPVs6A3D4jdiH{\r\n\r\n background-image:url(" + __webpack_require__(181) + ");\r\n\t\r\n}\r\n\r\n\r\n._3rLQ1zPDP_DjEm8ppfVpa8{\r\n\t background-image:url(" + __webpack_require__(182) + ");\r\n\t\r\n\r\n}", ""]);
 
 	// exports
 	exports.locals = {
@@ -22123,6 +22128,18 @@
 
 /***/ },
 /* 181 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA1ElEQVRIieWUwQ2EMAwEKYESKOFKogRKoANKoISUEcnelUugBErIfcIHEXLI+aCz5O9O1s666/6izKxX1YnkCsAABBH5NBMHEACkiw5m1rsAqjoVxBOApKqTC5DHUgQA2FyAm/EcbV4HSwUQXABVnSs7mF2A2ohIri5AbUQkFxcgu9hKC3bn4M6Fe/5H5TSfXWxNXn9UvkHtAnYBODvYmwibWV/ageuLxhiHLLxXkpxILjHG4emLq8KPM1G5/b92+fiJyOgUTwCSiIxFAMnV20XAK+sLz7WPgwl6A4sAAAAASUVORK5CYII="
+
+/***/ },
+/* 182 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA90lEQVRIieWVTQ3DMAyFC6EQCmEQCmEQCqEQxqAQBmEQerTk9yxDGIRA6A7zdthff9JKmxYphyjW+yz7JS6Kb1juXgKoAbQADgDq1cQB1CTPJHsz6wAcSPYkUzaI5D7E9o93qroL8NPdpOXuJcnzpyxFpCKZRKSaDVDVxsy6sbgoWzsbYGZHVW3G4qKMp9kAkqcpTYxe+BJAvzrA3UtVbVS1Ielm1t3O7zaAlmS6nceydpJD5k4vxcNyueIDyeGlbf8G0JvZcSvA/TGNQZYC7u6ID3D9Erl7GYBteiAi1dS4HBeln7bpckBMsO0ARXGdTpniiQ/D5wJk+h8P23spMAAAAABJRU5ErkJggg=="
+
+/***/ },
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -22372,18 +22389,6 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
-
-/***/ },
-/* 182 */
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA90lEQVRIieWVTQ3DMAyFC6EQCmEQCmEQCqEQxqAQBmEQerTk9yxDGIRA6A7zdthff9JKmxYphyjW+yz7JS6Kb1juXgKoAbQADgDq1cQB1CTPJHsz6wAcSPYkUzaI5D7E9o93qroL8NPdpOXuJcnzpyxFpCKZRKSaDVDVxsy6sbgoWzsbYGZHVW3G4qKMp9kAkqcpTYxe+BJAvzrA3UtVbVS1Ielm1t3O7zaAlmS6nceydpJD5k4vxcNyueIDyeGlbf8G0JvZcSvA/TGNQZYC7u6ID3D9Erl7GYBteiAi1dS4HBeln7bpckBMsO0ARXGdTpniiQ/D5wJk+h8P23spMAAAAABJRU5ErkJggg=="
-
-/***/ },
-/* 183 */
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA1ElEQVRIieWUwQ2EMAwEKYESKOFKogRKoANKoISUEcnelUugBErIfcIHEXLI+aCz5O9O1s666/6izKxX1YnkCsAABBH5NBMHEACkiw5m1rsAqjoVxBOApKqTC5DHUgQA2FyAm/EcbV4HSwUQXABVnSs7mF2A2ohIri5AbUQkFxcgu9hKC3bn4M6Fe/5H5TSfXWxNXn9UvkHtAnYBODvYmwibWV/ageuLxhiHLLxXkpxILjHG4emLq8KPM1G5/b92+fiJyOgUTwCSiIxFAMnV20XAK+sLz7WPgwl6A4sAAAAASUVORK5CYII="
 
 /***/ }
 /******/ ]);

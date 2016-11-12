@@ -19,11 +19,11 @@ var onsubmit =(function(event){
 
 
 });
+const image ="C:/Users/Obaro/Desktop/FirstReactApp/src/master/images/obaro.png"
 
 
 
-
-ReactDom.render(<LoginForm  style={style} usernameLabel= "Username"  passwordLabel="Password" onSubmit={onsubmit} />,  document.getElementById("app"));
+ReactDom.render(<LoginForm  imageSrc={image} style={style} usernameLabel= "Username"  passwordLabel="Password" onSubmit={onsubmit} />,  document.getElementById("app"));
 
 
  
