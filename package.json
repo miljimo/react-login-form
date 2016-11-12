@@ -1,8 +1,8 @@
 {
-  "name": "reactapp",
+  "name": "react-jimo-login-form",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "./lib/react-login-form.jsx",
   "scripts": {
     "start": "webpack --dev --watch"
   },
