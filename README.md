@@ -6,6 +6,10 @@
 
 ![ScreenShot](https://github.com/miljimo/react-login-form/blob/master/lib/login.png)
 
+This components are combined and theme to form single  front page.
+![ScreenShot](https://github.com/miljimo/react-login-form/blob/master/lib/index.png)
+
+
 #install
 
  npm install --save react-jimo-login-form
