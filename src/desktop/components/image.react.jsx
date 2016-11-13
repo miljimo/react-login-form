@@ -1,11 +1,13 @@
 var React = require("react");
 var Path  = require("path");
-
+var dtheme     = require("../../master/themes/standard.theme.jsx");
 
 
 var Image  = React.createClass({
 
 	 render:(function(){
+
+          var theme =Object.assign(dtheme, this.props.theme);
 
 	 	 var style =Object.assign({
               width:"50px",
@@ -15,7 +17,8 @@ var Image  = React.createClass({
              "margin":"10px auto auto auto",
              "position":"relative",
              "display":"block",
-             "boxShadow":"0px 1px 1px 0px rgba(0,0,0,0.2)",
+             "boxShadow":"0px 0px 0px 0px rgba(0,0,0,0.0)",
+             "backgroundColor":theme.colors.primaryLight,
              
 	 	 }, this.props.style);
 

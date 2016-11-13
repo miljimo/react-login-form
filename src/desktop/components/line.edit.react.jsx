@@ -1,6 +1,7 @@
 //line.edit.react.jsx
 
 var React = require("react");
+var dtheme     = require("../../master/themes/standard.theme.jsx");
 
 var LineEdit  = React.createClass({
 
@@ -10,8 +11,7 @@ var LineEdit  = React.createClass({
       
 
 	   render:(function(){
-
-
+	   	     var theme  = Object.assign(dtheme, this.props.theme);
 
 	   	     var style=Object.assign({
 	   	     	display:"block",
@@ -21,6 +21,8 @@ var LineEdit  = React.createClass({
 	   	     	"marginBottom":"0px",
 	   	     	"padding":"2px 2px 2px 15px",
 	   	     	"height":"30px",
+	   	     	"backgroundColor":theme.colors.primaryLight,
+	   	     	
 	   	     }, this.props.style);
 
 	   	    return (<input  ref='textfield' style={style} 

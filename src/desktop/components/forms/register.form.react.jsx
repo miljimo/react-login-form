@@ -4,7 +4,7 @@ var Button = require("../button.react.jsx");
 var Image  = require("../image.react.jsx");
 var Arrow  = require("../arrow.react.jsx");
 var LineEdit  = require("../line.edit.react.jsx");
-var cssStyle  = require("../../assets/css/login.react.css");
+var cssStyle  = require("../../assets/css/register.react.css");
 var defaultTheme     = require("../../../master/themes/standard.theme.jsx");
 var Label      = require("../label.react.jsx");
 
@@ -13,7 +13,7 @@ var Label      = require("../label.react.jsx");
 
 
 
-var LoginForm = React.createClass({
+var Register = React.createClass({
 
      getInitialState:(function(){
        return {focus:false}
@@ -24,7 +24,7 @@ var LoginForm = React.createClass({
 
           var  style  =Object.assign({
           	"backgroundColor":theme.colors.windowBackground,
-          	"width":"100%",            
+          	"width":"100%",
           	"height":"auto",
           	"position":"relative",
           	"display":"block",
@@ -39,6 +39,7 @@ var LoginForm = React.createClass({
           		"border":"3px solid "+theme.colors.primary,
           		"borderRadius":"100%",
           		"position":"relative",
+              "cursor":"pointer",
           		"backgroundColor":theme.colors.primaryLight,
               "visibility":(this.props.imageSrc && this.props.imageSrc !="")?"visible":"hidden",
               "display":(this.props.imageSrc && this.props.imageSrc !="")?"block":"none",
@@ -125,16 +126,32 @@ var LoginForm = React.createClass({
                     </div>
           	   	<div style={style.form}>
                       <div style={style.form.fields}>
-                          <LineEdit onTextChange={__textChange.bind(this)}  ref="username"  
-                            className={cssStyle.username} 
-                            style={style.form.fields.username}  
-                            placeholder={theme.II8n.components.login.username}/>
+                          <LineEdit onTextChange={__textChange.bind(this)}  ref="fullname"  
+                                    className={cssStyle.fullname} 
+                                    style={style.form.fields.username}  
+                                    placeholder={theme.II8n.components.register.fullname}/>
+                         <LineEdit onTextChange={__textChange.bind(this)} 
+                                    ref="email"  
+                                    className={cssStyle.email} 
+                                    style={style.form.fields.username}  
+                                    placeholder={theme.II8n.components.register.email}/>
+                         
                           <LineEdit onTextChange={__textChange.bind(this)}  
-                                ref="password" className={cssStyle.password}  
-                                password={true} style={style.form.fields.password} 
-                                placeholder={theme.II8n.components.login.password}/>
+                                    ref="username"  
+                                    className={cssStyle.username} 
+                                    style={style.form.fields.username} 
+                                    placeholder={theme.II8n.components.register.username}/>
+
+                          <LineEdit onTextChange={__textChange.bind(this)} 
+                                     ref="password" 
+                                     className={cssStyle.password}  
+                                     password={true} 
+                                    style={style.form.fields.password}
+                                    placeholder={theme.II8n.components.register.password}/>
                       </div>
-                         <Button  theme ={theme} text={theme.II8n.components.login.submit}  style={style.form.button} onClick ={__onSubmit.bind(this)} />
+
+                         <Button  theme ={theme} text={theme.II8n.components.register.submit}  
+                         style={style.form.button} onClick ={__onSubmit.bind(this)} />
           	   	</div>
      	   	    
      	   	   </div>
@@ -149,7 +166,7 @@ var LoginForm = React.createClass({
 
 
 
-LoginForm.prototype.componentDidMount=(function(preState, preProps){
+Register.prototype.componentDidMount=(function(preState, preProps){
    
    if(!this.__eventsAdded){
        this.__eventsAdded=true;
@@ -166,13 +183,9 @@ LoginForm.prototype.componentDidMount=(function(preState, preProps){
 
 
 var __textChange=(function(target, text){
-  try{
-     if(typeof this.props.onTextChange=='function'){
-        this.props.onTextChange({data:__getData.call(this), target:this});
+     if(typeof this.props.onTextChange=='function'){      
+       this.props.onTextChange({data:__getData.call(this), target:this});
      }
-   }catch(error){
-     console.log(error)
-   }
 })
 
 
@@ -180,6 +193,15 @@ var __onSubmit=(function(sender, event){
     if(typeof this.props.onSubmit =='function'){
       this.props.onSubmit({data:__getData.call(this), target:this});
     }
+})
+
+
+var __getData= (function(event){
+   var usernameValue  = this.refs.username.get();
+   var passwordValue  = this.refs.password.get();
+   var fullname       = this.refs.fullname.get();
+   var email          = this.refs.email.get();
+   return {username:usernameValue, password:passwordValue, "email":email, "fullname":fullname};
 })
 
 
@@ -208,14 +230,8 @@ var __enter=(function(event){
       }
   }
 
+    
+
 
 })
-
-
-var __getData=(function(){
-  var usernameValue  = this.refs.username.get();
-  var passwordValue  = this.refs.password.get();
-  return {username:usernameValue, password:passwordValue}
-})
-
-module.exports = LoginForm;
+module.exports = Register;

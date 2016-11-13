@@ -1,0 +1,29 @@
+
+
+:local(.fullname){
+
+ background-image:url("../../../master/icons/name.png");
+	
+}
+
+
+:local(.email){
+	 background-image:url("../../../master/icons/email.png");
+	
+
+}
+
+
+
+:local(.username){
+
+ background-image:url("../../../master/icons/user.png");
+	
+}
+
+
+:local(.password){
+	 background-image:url("../../../master/icons/password.png");
+	
+
+}

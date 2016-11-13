@@ -15,12 +15,18 @@ var Arrow = React.createClass({
 	 	 	"borderTop":"7px solid transparent",
 	 	 	"borderRight":"10px solid transparent",
 	 	 	"borderBottom":"7px solid "+theme.colors.primary,
-
 	 	 }, this.props.style);
 	 	 
-	 	return (<div  className={this.props.className} style={style} />)
+	 	return (<div onClick={__onClick.bind(this)} className={this.props.className} style={style} />)
 	 })
 })
 
+
+
+var __onClick =(function(event){
+	 if(typeof this.props.onClick=='function'){
+	 	 this.props.onClick(event);
+	 }
+})
 
 module.exports = Arrow;

@@ -13,11 +13,11 @@ var Button =React.createClass({
 		var theme  = Object.assign(dtheme, this.props.theme );
 
 		 var style =Object.assign({
-		 	"border":"1px solid "+theme.colors.accent,
+		 	"border":"0px solid "+theme.colors.accent,
 		 	"boxShadow":"0px 1px 2px 0px rgba(0,0,0,0.2)",
 		 	"padding":"5px",
 		 	"backgroundColor":theme.colors.accent,
-		 	"color":theme.colors.primaryText,
+		 	"color":theme.colors.primaryLight,
 		 	"borderRadius":"5px",		 	
 		 	"cursor":"pointer",
 		 	"width":"100%",

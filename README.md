@@ -1,6 +1,6 @@
 
 
- This is a simple reactjs login form that can be reused in ones application
+ Standard reactjs forms which include login form, registration forms, and countdown timer widgets , with various themes
 
 #snapshot
 
