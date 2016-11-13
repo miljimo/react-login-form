@@ -45,7 +45,7 @@ var App =React.createClass({
 	 	   },this.props.style);
 
 	 	  return(
-	 	  	<Dialog modal={true}  center={true} style={style}>
+	 	  	<Dialog modal={true}  center={true} style={style} enableCloseButton={true}>
 	 	  	  <div style={ style.leftContent}>
 	 	  	      {__setLeftContent.call(this, style.leftContent, theme)}
 	 	  	  </div>

@@ -21462,10 +21462,10 @@
 
 	var React = __webpack_require__(1);
 	var LoginForm = __webpack_require__(173);
-	var Register = __webpack_require__(187);
-	var AppLogo = __webpack_require__(200);
+	var Register = __webpack_require__(189);
+	var AppLogo = __webpack_require__(194);
 	var theme = __webpack_require__(175);
-	var Dialog = __webpack_require__(192);
+	var Dialog = __webpack_require__(197);
 
 	var App = React.createClass({
 		displayName: "App",
@@ -21506,7 +21506,7 @@
 
 			return React.createElement(
 				Dialog,
-				{ modal: true, center: true, style: style },
+				{ modal: true, center: true, style: style, enableCloseButton: true },
 				React.createElement(
 					"div",
 					{ style: style.leftContent },
@@ -21577,12 +21577,12 @@
 
 	var React = __webpack_require__(1);
 	var Button = __webpack_require__(174);
-	var Image = __webpack_require__(176);
-	var Arrow = __webpack_require__(178);
-	var LineEdit = __webpack_require__(179);
-	var cssStyle = __webpack_require__(180);
+	var Image = __webpack_require__(179);
+	var Arrow = __webpack_require__(180);
+	var LineEdit = __webpack_require__(181);
+	var cssStyle = __webpack_require__(182);
 	var defaultTheme = __webpack_require__(175);
-	var Label = __webpack_require__(186);
+	var Label = __webpack_require__(188);
 
 	var LoginForm = React.createClass({
 	  displayName: "LoginForm",
@@ -21857,10 +21857,10 @@
 	   Standard theme for the components
 
 	*/
-	var path = __webpack_require__(177);
+	var path = __webpack_require__(176);
 	var ICON_URL = "C:/Users/Obaro/Desktop/FirstReactApp/src/master/icons/";
 
-	var II8n = __webpack_require__(202);
+	var II8n = __webpack_require__(177);
 	var theme = {
 	   name: "standard-theme",
 	   version: "1.0.0",
@@ -21907,43 +21907,6 @@
 
 /***/ },
 /* 176 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var React = __webpack_require__(1);
-	var Path = __webpack_require__(177);
-	var dtheme = __webpack_require__(175);
-
-	var Image = React.createClass({
-	  displayName: "Image",
-
-
-	  render: function render() {
-
-	    var theme = Object.assign(dtheme, this.props.theme);
-
-	    var style = Object.assign({
-	      width: "50px",
-	      "height": "50px",
-	      "borderRadius": "100%",
-	      "border": "0px solid #eee",
-	      "margin": "10px auto auto auto",
-	      "position": "relative",
-	      "display": "block",
-	      "boxShadow": "0px 0px 0px 0px rgba(0,0,0,0.0)",
-	      "backgroundColor": theme.colors.primaryLight
-
-	    }, this.props.style);
-
-	    return React.createElement("img", { className: this.props.className, style: style, src: Path.resolve(this.props.src) });
-	  }
-	});
-
-	module.exports = Image;
-
-/***/ },
-/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -22170,7 +22133,89 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
+/* 177 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var en = __webpack_require__(178);
+
+	module.exports = {
+		"en": en
+
+	};
+
+/***/ },
 /* 178 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports = {
+
+	    components: {
+
+	        applogo: {
+	            "slogon": "What can possible go wrong...",
+	            "note": "The front page is a simple clear react login page , that can be easy integrated into any application."
+	        },
+
+	        login: {
+	            "username": "Username",
+	            "password": "Password",
+	            "submit": "LOG IN"
+	        },
+	        register: {
+	            "username": " Choose new username",
+	            "password": "Choose new password",
+	            "fullname": "What's your full name?",
+	            "email": "What is your email address",
+	            "submit": "Create Account"
+
+	        }
+	    }
+
+	};
+
+/***/ },
+/* 179 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+	var Path = __webpack_require__(176);
+	var dtheme = __webpack_require__(175);
+
+	var Image = React.createClass({
+	  displayName: "Image",
+
+
+	  render: function render() {
+
+	    var theme = Object.assign(dtheme, this.props.theme);
+
+	    var style = Object.assign({
+	      width: "50px",
+	      "height": "50px",
+	      "borderRadius": "100%",
+	      "border": "0px solid #eee",
+	      "margin": "10px auto auto auto",
+	      "position": "relative",
+	      "display": "block",
+	      "boxShadow": "0px 0px 0px 0px rgba(0,0,0,0.0)",
+	      "backgroundColor": theme.colors.primaryLight
+
+	    }, this.props.style);
+
+	    return React.createElement("img", { className: this.props.className, style: style, src: Path.resolve(this.props.src) });
+	  }
+	});
+
+	module.exports = Image;
+
+/***/ },
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22208,7 +22253,7 @@
 	module.exports = Arrow;
 
 /***/ },
-/* 179 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22272,16 +22317,16 @@
 	module.exports = LineEdit;
 
 /***/ },
-/* 180 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(181);
+	var content = __webpack_require__(183);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(185)(content, {});
+	var update = __webpack_require__(187)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -22298,15 +22343,15 @@
 	}
 
 /***/ },
-/* 181 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(182)();
+	exports = module.exports = __webpack_require__(184)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "\r\n\r\n._2zfTn7M8AZPVs6A3D4jdiH{\r\n\r\n background-image:url(" + __webpack_require__(183) + ");\r\n\t\r\n}\r\n\r\n\r\n._3rLQ1zPDP_DjEm8ppfVpa8{\r\n\t background-image:url(" + __webpack_require__(184) + ");\r\n\t\r\n\r\n}", ""]);
+	exports.push([module.id, "\r\n\r\n._2zfTn7M8AZPVs6A3D4jdiH{\r\n\r\n background-image:url(" + __webpack_require__(185) + ");\r\n\t\r\n}\r\n\r\n\r\n._3rLQ1zPDP_DjEm8ppfVpa8{\r\n\t background-image:url(" + __webpack_require__(186) + ");\r\n\t\r\n\r\n}", ""]);
 
 	// exports
 	exports.locals = {
@@ -22315,7 +22360,7 @@
 	};
 
 /***/ },
-/* 182 */
+/* 184 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22370,19 +22415,19 @@
 	};
 
 /***/ },
-/* 183 */
+/* 185 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA1ElEQVRIieWUwQ2EMAwEKYESKOFKogRKoANKoISUEcnelUugBErIfcIHEXLI+aCz5O9O1s666/6izKxX1YnkCsAABBH5NBMHEACkiw5m1rsAqjoVxBOApKqTC5DHUgQA2FyAm/EcbV4HSwUQXABVnSs7mF2A2ohIri5AbUQkFxcgu9hKC3bn4M6Fe/5H5TSfXWxNXn9UvkHtAnYBODvYmwibWV/ageuLxhiHLLxXkpxILjHG4emLq8KPM1G5/b92+fiJyOgUTwCSiIxFAMnV20XAK+sLz7WPgwl6A4sAAAAASUVORK5CYII="
 
 /***/ },
-/* 184 */
+/* 186 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA90lEQVRIieWVTQ3DMAyFC6EQCmEQCmEQCqEQxqAQBmEQerTk9yxDGIRA6A7zdthff9JKmxYphyjW+yz7JS6Kb1juXgKoAbQADgDq1cQB1CTPJHsz6wAcSPYkUzaI5D7E9o93qroL8NPdpOXuJcnzpyxFpCKZRKSaDVDVxsy6sbgoWzsbYGZHVW3G4qKMp9kAkqcpTYxe+BJAvzrA3UtVbVS1Ielm1t3O7zaAlmS6nceydpJD5k4vxcNyueIDyeGlbf8G0JvZcSvA/TGNQZYC7u6ID3D9Erl7GYBteiAi1dS4HBeln7bpckBMsO0ARXGdTpniiQ/D5wJk+h8P23spMAAAAABJRU5ErkJggg=="
 
 /***/ },
-/* 185 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -22634,7 +22679,7 @@
 
 
 /***/ },
-/* 186 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22669,7 +22714,7 @@
 	module.exports = Label;
 
 /***/ },
-/* 187 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22678,12 +22723,12 @@
 
 	var React = __webpack_require__(1);
 	var Button = __webpack_require__(174);
-	var Image = __webpack_require__(176);
-	var Arrow = __webpack_require__(178);
-	var LineEdit = __webpack_require__(179);
-	var cssStyle = __webpack_require__(188);
+	var Image = __webpack_require__(179);
+	var Arrow = __webpack_require__(180);
+	var LineEdit = __webpack_require__(181);
+	var cssStyle = __webpack_require__(190);
 	var defaultTheme = __webpack_require__(175);
-	var Label = __webpack_require__(186);
+	var Label = __webpack_require__(188);
 
 	var Register = React.createClass({
 	    displayName: "Register",
@@ -22886,16 +22931,16 @@
 	module.exports = Register;
 
 /***/ },
-/* 188 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(189);
+	var content = __webpack_require__(191);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(185)(content, {});
+	var update = __webpack_require__(187)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -22912,15 +22957,15 @@
 	}
 
 /***/ },
-/* 189 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(182)();
+	exports = module.exports = __webpack_require__(184)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "\r\n\r\n.-izdhDo5V1jAaT0kN6rRa{\r\n\r\n background-image:url(" + __webpack_require__(190) + ");\r\n\t\r\n}\r\n\r\n\r\n._3JaWP1lkQOpbVyFBUJbMeI{\r\n\t background-image:url(" + __webpack_require__(191) + ");\r\n\t\r\n\r\n}\r\n\r\n\r\n\r\n._1i18v_nFGmsJG_L3AT-LES{\r\n\r\n background-image:url(" + __webpack_require__(183) + ");\r\n\t\r\n}\r\n\r\n\r\n._2lKMOo_jU7TOTOEwAKiwJe{\r\n\t background-image:url(" + __webpack_require__(184) + ");\r\n\t\r\n\r\n}\r\n", ""]);
+	exports.push([module.id, "\r\n\r\n.-izdhDo5V1jAaT0kN6rRa{\r\n\r\n background-image:url(" + __webpack_require__(192) + ");\r\n\t\r\n}\r\n\r\n\r\n._3JaWP1lkQOpbVyFBUJbMeI{\r\n\t background-image:url(" + __webpack_require__(193) + ");\r\n\t\r\n\r\n}\r\n\r\n\r\n\r\n._1i18v_nFGmsJG_L3AT-LES{\r\n\r\n background-image:url(" + __webpack_require__(185) + ");\r\n\t\r\n}\r\n\r\n\r\n._2lKMOo_jU7TOTOEwAKiwJe{\r\n\t background-image:url(" + __webpack_require__(186) + ");\r\n\t\r\n\r\n}\r\n", ""]);
 
 	// exports
 	exports.locals = {
@@ -22931,202 +22976,16 @@
 	};
 
 /***/ },
-/* 190 */
+/* 192 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABMklEQVRIic2VTY3EMAyFC6EQCqEQBsJCWChlUAgDYSD0aMl+liEUQiB0L0mVUX6b00Z6l2nqr+8lY09TZpnZ/FS5OklRVd0BGAAH4BrQqap7tjiAj9/kPGREAWRfABHZwoMuu5UF4ABwfTkBcAK4asXNbBaRVwvg03AAXAxIbUVLVd9x1iKy1WDBhZnNgVgERPElEpGtBiCipQkI8RXkiGgZBjDz2rqauai6AUS0dNz9n2FA9Kyo/x1RjwNmXocBfrNVAEfhnX5AzUXu6x8Dpin9J3t9SvsfAwqHnVzPIYCIvHIOVPVdao4lwN39fOfcGgd8R8XMv0WA/+Fu1z6OWv8pyZh5jdr1GccQOuYxWDzohJ+MyejsjKPbTfZ8/NAfHfgXAKeqe3PsmtlMRMtT5Wr9AUCVhtCSQr1UAAAAAElFTkSuQmCC"
 
 /***/ },
-/* 191 */
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABWUlEQVRIibWV3a2DMAyFMwIjMAIjdARGYARG6AaM0BE6Ao+R7GN5hI7ACNwXG6U0BQK9lvySCH/x8Q8hmKlqBeAJYAIwX3UReYTUAIy/CJyF2OtnAPqj4JN7CCGEGGOdUIeLoFFEHi71ByCBtABeJYEBtBZ8Oc8CXK4YY83M/Q5ImbknoiaX+RZgBjAx8y2EEAy0vuutfi2+dN8eYAYwqWrl3SYigwdeNUjWdzMgooaZbwCeMcbaQX5GRI3JUwyYmPlmBV/SZ+Z75qw34CHAC8Bomj9Lu2gTICKDa2uvLB6w9XfLJDNzb9reiajbK96Oe7tOyy5S1cqHxDOx15QM25uLyLDepH751jFE1JnGetDHpZUzwfOvOGs4tqaXiS62rSFZQ1LZzkDSXTLaQD3SDD/+UiVmtdCc7nY3vrXdFUiusH53WqbUvgWxxdZdBmwZgPZfAem/4Yj9AZ3Q578aSj6KAAAAAElFTkSuQmCC"
-
-/***/ },
-/* 192 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {"use strict";
-
-	var React = __webpack_require__(1);
-	var CloseButton = __webpack_require__(194);
-
-	var cssStyle = __webpack_require__(197);
-
-	var Dialog = React.createClass({
-		displayName: "Dialog",
-
-
-		getDefaultProps: function getDefaultProps() {
-			return { visible: true };
-		},
-		getInitialState: function getInitialState() {
-
-			return { closeLeft: null, closeTop: null };
-		},
-
-		render: function render() {
-			var ismodal = typeof this.props.modal == 'boolean' ? this.props.modal : false;
-
-			var style = Object.assign({
-				boxShadow: "0px 1px 2px 1px rgba(0,0,0,0.2)",
-				"borderRadius": "1px",
-				"position": "relative",
-				"margin": "0px",
-				modal: {
-					position: ismodal == true ? "fixed" : "relative",
-					"overflow": "hidden",
-					"margin": "0px",
-					"width": ismodal ? "99.8%" : "auto",
-					"height": ismodal ? "100%" : "auto",
-					"backgroundColor": !ismodal ? "transparent" : "",
-					"padding": "2px",
-					"display": this.props.visible ? "block" : "none",
-					"visibility": this.props.visible ? "visible" : "hidden"
-
-				},
-				closeButton: {
-					boxShadow: "0px 1px 2px 0px rgba(0,0,0,0.2)",
-					"borderRadius": "75px",
-					"padding": "2px",
-					"display": this.props.enableCloseButton ? "block" : "none",
-					"visibility": this.props.enableCloseButton ? "visible" : "hidden",
-					left: this.state.closeLeft ? this.state.closeLeft : "auto",
-					"top": this.state.closeTop ? this.state.closeTop : "auto",
-					"zIndex": 987689
-
-				}
-			}, this.props.style);
-			var className = cssStyle.dialog + " " + (this.props.className || "");
-			return React.createElement(
-				"div",
-				{ style: style.modal,
-					className: cssStyle.modal,
-					ref: "modal",
-					onClick: __doubleClick.bind(this) },
-				React.createElement(CloseButton, { ref: "close", className: cssStyle.close,
-					style: style.closeButton,
-					onClick: __onClose.bind(this) }),
-				React.createElement(
-					"div",
-					{ className: className, style: style, ref: "content" },
-					this.props.children || null
-				)
-			);
-		}
-	});
-
-	Dialog.propTypes = {
-		modal: React.PropTypes.bool,
-		onSelect: React.PropTypes.func,
-		"fillParent": React.PropTypes.bool
-
-	};
-	Dialog.prototype.componentDidMount = function () {
-		__doLayout.call(this);
-	};
-
-	Dialog.prototype.componentDidUpdate = function (preState, preProps) {
-		if (this.state.modal != preState.modal) __doLayout.call(this);
-	};
-
-	var __doLayout = function __doLayout() {
-		var modal = this.refs.modal;
-		if (modal) {
-			if (this.props.fillParent) {
-				var parentNode = modal.parentNode;
-				if (!parentNode) parentNode = window.document.body;
-				var rectParent = parentNode.getBoundingClientRect();
-				modal.style.width = rectParent.width + "px";
-				modal.style.left = rectParent.left + "px";
-				modal.style.top = rectParent.top + "px";
-			}
-			__center.call(this);
-			__layoutCloseButton.call(this);
-		}
-	};
-
-	var __layoutCloseButton = function __layoutCloseButton() {
-		var content = this.refs.content;
-		var rect = content.getBoundingClientRect();
-		var right = rect.width + rect.left - 25;
-		var top = rect.top - 20;
-		if (top <= 0) {
-			top += 20;
-			content.style.top = top + "px";
-			top = top - 20;
-		}
-		if (this.state.closeTop != top || this.state.closeLeft != right) this.setState({ closeTop: top, closeLeft: right });
-	};
-
-	/**
-	*/
-
-	var __center = function __center() {
-
-		var modal = this.refs.modal;
-		var content = this.refs.content;
-		var rect = modal.getBoundingClientRect();
-		var isCenterX = this.props.center || this.props.centerX || false;
-		var isCenterY = this.props.center || this.props.centerY || false;
-		if (isCenterX == true) __centerX.call(this, rect);
-		if (isCenterY == true) __centerY.call(this, rect);
-	};
-
-	var __centerX = function __centerX(rect) {
-		var content = this.refs.content;
-		var rectContent = content.getBoundingClientRect();
-		var xPos = rect.width * 0.5 - rectContent.width * 0.5 + rect.left;
-		content.style.left = parseInt(xPos) + "px";
-	};
-
-	var __centerY = function __centerY(rect) {
-		var content = this.refs.content;
-		var rectContent = content.getBoundingClientRect();
-		var yPos = rect.height * 0.5 - rectContent.height * 0.5 + rect.top;
-		content.style.top = parseInt(yPos) + "px";
-	};
-
-	var __doubleClick = function __doubleClick(event) {
-		var event = event || window.event;
-		if (event) {
-			event.preventDefault();
-			if (this.props.onSelect) {
-				this.props.onSelect(this, event);
-			}
-		}
-	};
-
-	var __onClose = function __onClose() {
-		if (this.props.onClose) {
-			this.props.onClose();
-		}
-	};
-
-	Dialog.Button = CloseButton;
-	module.exports = Dialog;
-
-	if (!module && window) {
-		window.jimobama = { "Dialog": Dialog };
-	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(193)(module)))
-
-/***/ },
 /* 193 */
 /***/ function(module, exports) {
 
-	"use strict";
-
-	module.exports = function (module) {
-		if (!module.webpackPolyfill) {
-			module.deprecate = function () {};
-			module.paths = [];
-			// module.parent = undefined by default
-			module.children = [];
-			module.webpackPolyfill = 1;
-		}
-		return module;
-	};
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABWUlEQVRIibWV3a2DMAyFMwIjMAIjdARGYARG6AaM0BE6Ao+R7GN5hI7ACNwXG6U0BQK9lvySCH/x8Q8hmKlqBeAJYAIwX3UReYTUAIy/CJyF2OtnAPqj4JN7CCGEGGOdUIeLoFFEHi71ByCBtABeJYEBtBZ8Oc8CXK4YY83M/Q5ImbknoiaX+RZgBjAx8y2EEAy0vuutfi2+dN8eYAYwqWrl3SYigwdeNUjWdzMgooaZbwCeMcbaQX5GRI3JUwyYmPlmBV/SZ+Z75qw34CHAC8Bomj9Lu2gTICKDa2uvLB6w9XfLJDNzb9reiajbK96Oe7tOyy5S1cqHxDOx15QM25uLyLDepH751jFE1JnGetDHpZUzwfOvOGs4tqaXiS62rSFZQ1LZzkDSXTLaQD3SDD/+UiVmtdCc7nY3vrXdFUiusH53WqbUvgWxxdZdBmwZgPZfAem/4Yj9AZ3Q578aSj6KAAAAAElFTkSuQmCC"
 
 /***/ },
 /* 194 */
@@ -23134,179 +22993,15 @@
 
 	"use strict";
 
-	var React = __webpack_require__(1);
-	var cssStyle = __webpack_require__(195);
-
-	var Button = React.createClass({
-		displayName: "Button",
-
-		getInitialState: function getInitialState() {
-			return { pressed: false };
-		},
-		render: function render() {
-			var flat = this.state.pressed ? "0px 4px 8px 0px rgba(0,0,0,0.2)" : null;
-			var hasIcon = this.props.icon ? true : false;
-			var style = Object.assign({
-				boxShadow: "0px 0px 1px 0px rgba(0,0,0,0.2)"
-			}, this.props.style);
-			var defaultClassName = cssStyle.button;
-			var className = defaultClassName + " " + this.props.className;
-			return React.createElement("input", {
-				className: className,
-				type: "button",
-				value: this.props.value,
-				style: style,
-				disabled: this.props.disabled ? "disabled" : "",
-				onMouseEnter: __mouseEnter.bind(this),
-				onMouseLeave: __mouseLeave.bind(this),
-				onMouseDown: __mouseDown.bind(this),
-				onMouseUp: __mouseUp.bind(this),
-				onClick: __onClicked.bind(this)
-
-			});
-		}
-	});
-
-	var __mouseLeave = function __mouseLeave(event) {
-		if (this.props.disabled) return;
-		if (this.props.onMouseLeave) {
-			this.props.onMouseLeave(this, this.props.eventKey, event.clientX, event.clientY);
-		}
-	};
-	var __mouseEnter = function __mouseEnter(event) {
-		if (this.props.disabled) return;
-		if (this.props.onMouseEnter) {
-			this.props.onMouseEnter(this, this.props.eventKey, event.clientX, event.clientY);
-		}
-	};
-	var __mouseUp = function __mouseUp(event) {
-		if (this.props.disabled) return;
-		if (this.props.onMouseUp) {
-			this.props.onMouseUp(this, this.props.eventKey, event.clientX, event.clientY);
-		}
-	};
-
-	var __mouseDown = function __mouseDown(event) {
-		if (this.props.disabled) return;
-		if (this.props.onMouseUp) {
-			this.props.onMouseDown(this, this.props.eventKey, event.clientX, event.clientY);
-		}
-	};
-	var __onClicked = function __onClicked(event) {
-		if (this.props.disabled) return;
-		if (this.props.onClick) {
-			this.props.onClick(this, this.props.eventKey);
-		}
-	};
-	module.exports = Button;
-
-/***/ },
-/* 195 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(196);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(185)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../css-loader/index.js!./button.react.css", function() {
-				var newContent = require("!!./../../../../css-loader/index.js!./button.react.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 196 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(182)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "\r\n._13TQGISKEx44dbVyYroeFA{\r\n  background-color:transparent;\r\n  background-position:center center ;\r\n  background-repeat: no-repeat;\r\n  background-size: 15px 15px;\t\r\n  border:0px;\r\n  cursor:pointer;\r\n}\r\n\r\n", ""]);
-
-	// exports
-	exports.locals = {
-		"button": "_13TQGISKEx44dbVyYroeFA"
-	};
-
-/***/ },
-/* 197 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(198);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(185)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../css-loader/index.js!./dialog.react.css", function() {
-				var newContent = require("!!./../../../../css-loader/index.js!./dialog.react.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 198 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(182)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "._3YOkBi9SUc83fQJNX1_pll{\r\n  border:0px solid #000;\r\n  position:fixed;  \r\n  height:100%;\r\n  top: 0px;\r\n  left:0px;\r\n  overflow: auto;\r\n  background-color:#000000;\r\n  background-color:rgb(0,0,0);\r\n  background-color:rgba(0,0,0,0.2);\r\n  z-index:1;\r\n  padding:0px;\r\n  margin:0px;\r\n  position:relative;\r\n}\r\n\r\n._3YOkBi9SUc83fQJNX1_pll ._2WlPOXdNDCRQ7XW4579uWg{\r\n  margin:0px;\r\n  overflow:hidden;\r\n  padding:0px;\r\n  background-color: #fefefe;\r\n  position:relative;\r\n}\r\n\r\n\r\n\r\n._3YOkBi9SUc83fQJNX1_pll ._2Ey-YuHBS7q4ljgAwIPtdP{\r\n\twidth:40px;\r\n\theight:40px;\r\n\tborder:0px solid red;\r\n\tpadding:2px;\r\n\tposition:absolute;\r\n\tbackground-image:url(" + __webpack_require__(199) + ");\r\n\tbackground-size:20px 20px;\r\n\tbackground-color:#d9d9d9;\r\n\tborder:2px solid #fff;\r\n}\r\n._3YOkBi9SUc83fQJNX1_pll ._2Ey-YuHBS7q4ljgAwIPtdP:hover{\r\n\tbackground-size:25px 25px;\r\n\tbackground-color:#ff9999;\r\n}\r\n@media only screen and (min-width: 866px) \r\n{\r\n\r\n\t._3YOkBi9SUc83fQJNX1_pll ._2WlPOXdNDCRQ7XW4579uWg{\r\n\t  width:60%;\r\n\t}\r\n\r\n}", ""]);
-
-	// exports
-	exports.locals = {
-		"modal": "_3YOkBi9SUc83fQJNX1_pll",
-		"dialog": "_2WlPOXdNDCRQ7XW4579uWg",
-		"close": "_2Ey-YuHBS7q4ljgAwIPtdP"
-	};
-
-/***/ },
-/* 199 */
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAA3pJREFUeJztmU+P20QYh5/XaVqxaImzUg8Lwt7gFVwqLlyQuHKDIxIHJAriT8suX4DPQbdVxYlCrrQVB6QeOHEpAiTEAanKJrEPbBGg2AWkIlEPh921FjeOk8mMI8E8t/j1vDO/J3HkscHhcDgcDofD4XD8H5ElxnrRk1uvKOFp1ZJbo9Hoa2OrmoPtMHw+V/KiIv9xlCSfAUqnj7aAXhhe9ZB3jz7mKC7uJ+OPdPstwlNheFGQyxytXykuD5Pxrk4vLQFBEHTb4v1WGq9QXLAtoReG73nIXmnuXNqnuoPB4N6i/TxzS0MQrkbB1jsGe/6LivBL0dIZlGXZfd/vPC7Ic6WSILy80fEPJln6rYH1FcwKrxRX9kfD6zp9tQQApFn2hd957BkROVcqGZdQ8833h8n4App/gtoCAJVm2XXbEurC78fj88AD3f7LCADLEmyHh+UFwBwSul3/7iRdTEIT4cGMAKiRIPDSIhKaCg/mBIAhCU2GB7MCYB4JfufnSZZ9M21w0+HBvAColSBTJawiPNgRAAtKWFV4KiY0SasXBH1PvFen1JRC7SiQVYWnYlLTzJQwYx3Ww4O9S+Aks+8TVhgemhEAsyWUaSw8NHMJnKQVhVu3gfIuEgCl8tvDJHmBhsJDc78AAKKgt4vwVlVdRJ7o+p27VfcJNmhMQBT03kfUhzWnVd4n2KIRAXOGP6ZRCdYF1ITvAz8Az5aOH0rQ2EUuilUBURDsInKpotzfj8evT7L0xobvR0yVsNguUgdrAg7DezPDAzmgJll6c1USrAiYFV6hPh3G8XkOwxeH6yTYeNAKFgRsh+EO4u1Nq1WEL8qzJNh62mxUwHYY7qjDjc1D1IQvTmtagjEBBsIXpzcpwYiAmvCfDOP4DeYLXwybQ8JPkyz9TnPJBUsLOAp/iWlvbPTCF8ObkLCUAIvhiza2JWgLiILe2whXmBI+R10bxfGbLBf+mFoJ3a4/nqTp9zrNtbbDm5uba2unz/wCrJVrhsOfpBWFWx8Drz00Z57/3jpz+uxgMPhr0aZar8fb7XaHZsMDPDh6UNIvFzzPW/f+9NZ1mmoJSJLkANRXJ49ZDn9MlYQv7xzc+VWnofZ/wKPr6zdPefIIcE9gbxjHH2A3/DFqkqU3Njr+H4gSlHz+t6idLMvuNzC3w+FwOBwOh8PhcDgc/wX+AX8TFdFIL2t/AAAAAElFTkSuQmCC"
-
-/***/ },
-/* 200 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
 	//app.logo.react.jsx
 
 	var React = __webpack_require__(1);
-	var Label = __webpack_require__(186);
+	var Label = __webpack_require__(188);
 	var dtheme = __webpack_require__(175);
-	var Seperator = __webpack_require__(201);
+	var Seperator = __webpack_require__(195);
 	var Button = __webpack_require__(174);
-	var Image = __webpack_require__(176);
-	var RibbleButton = __webpack_require__(204);
+	var Image = __webpack_require__(179);
+	var RibbleButton = __webpack_require__(196);
 
 	var AppLogo = React.createClass({
 	  displayName: "AppLogo",
@@ -23509,7 +23204,7 @@
 	module.exports = AppLogo;
 
 /***/ },
-/* 201 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -23533,60 +23228,15 @@
 	module.exports = Seperator;
 
 /***/ },
-/* 202 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var en = __webpack_require__(203);
-
-	module.exports = {
-		"en": en
-
-	};
-
-/***/ },
-/* 203 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	module.exports = {
-
-	    components: {
-
-	        applogo: {
-	            "slogon": "What can possible go wrong...",
-	            "note": "Share and watch online movies with your friends and family with simple clicks."
-	        },
-
-	        login: {
-	            "username": "Username",
-	            "password": "Password",
-	            "submit": "LOG IN"
-	        },
-	        register: {
-	            "username": " Choose new username",
-	            "password": "Choose new password",
-	            "fullname": "What's your full name?",
-	            "email": "What is your email address",
-	            "submit": "Create Account"
-
-	        }
-	    }
-
-	};
-
-/***/ },
-/* 204 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	var React = __webpack_require__(1);
 	var dtheme = __webpack_require__(175);
-	var Image = __webpack_require__(176);
-	var Label = __webpack_require__(186);
+	var Image = __webpack_require__(179);
+	var Label = __webpack_require__(188);
 
 	var RibbleButton = React.createClass({
 		displayName: "RibbleButton",
@@ -23683,6 +23333,356 @@
 	};
 
 	module.exports = RibbleButton;
+
+/***/ },
+/* 197 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {"use strict";
+
+	var React = __webpack_require__(1);
+	var CloseButton = __webpack_require__(199);
+
+	var cssStyle = __webpack_require__(202);
+
+	var Dialog = React.createClass({
+		displayName: "Dialog",
+
+
+		getDefaultProps: function getDefaultProps() {
+			return { visible: true };
+		},
+		getInitialState: function getInitialState() {
+
+			return { closeLeft: null, closeTop: null };
+		},
+
+		render: function render() {
+			var ismodal = typeof this.props.modal == 'boolean' ? this.props.modal : false;
+
+			var style = Object.assign({
+				boxShadow: "0px 1px 2px 1px rgba(0,0,0,0.2)",
+				"borderRadius": "1px",
+				"position": "relative",
+				"margin": "0px",
+				modal: {
+					position: ismodal == true ? "fixed" : "relative",
+					"overflow": "hidden",
+					"margin": "0px",
+					"width": ismodal ? "99.8%" : "auto",
+					"height": ismodal ? "100%" : "auto",
+					"backgroundColor": !ismodal ? "transparent" : "",
+					"padding": "2px",
+					"display": this.props.visible ? "block" : "none",
+					"visibility": this.props.visible ? "visible" : "hidden"
+
+				},
+				closeButton: {
+					boxShadow: "0px 1px 2px 0px rgba(0,0,0,0.2)",
+					"borderRadius": "75px",
+					"padding": "2px",
+					"display": this.props.enableCloseButton ? "block" : "none",
+					"visibility": this.props.enableCloseButton ? "visible" : "hidden",
+					left: this.state.closeLeft ? this.state.closeLeft : "auto",
+					"top": this.state.closeTop ? this.state.closeTop : "auto",
+					"zIndex": 987689
+
+				}
+			}, this.props.style);
+			var className = cssStyle.dialog + " " + (this.props.className || "");
+			return React.createElement(
+				"div",
+				{ style: style.modal,
+					className: cssStyle.modal,
+					ref: "modal",
+					onClick: __doubleClick.bind(this) },
+				React.createElement(CloseButton, { ref: "close", className: cssStyle.close,
+					style: style.closeButton,
+					onClick: __onClose.bind(this) }),
+				React.createElement(
+					"div",
+					{ className: className, style: style, ref: "content" },
+					this.props.children || null
+				)
+			);
+		}
+	});
+
+	Dialog.propTypes = {
+		modal: React.PropTypes.bool,
+		onSelect: React.PropTypes.func,
+		"fillParent": React.PropTypes.bool
+
+	};
+	Dialog.prototype.componentDidMount = function () {
+		__doLayout.call(this);
+	};
+
+	Dialog.prototype.componentDidUpdate = function (preState, preProps) {
+		if (this.state.modal != preState.modal) __doLayout.call(this);
+	};
+
+	var __doLayout = function __doLayout() {
+		var modal = this.refs.modal;
+		if (modal) {
+			if (this.props.fillParent) {
+				var parentNode = modal.parentNode;
+				if (!parentNode) parentNode = window.document.body;
+				var rectParent = parentNode.getBoundingClientRect();
+				modal.style.width = rectParent.width + "px";
+				modal.style.left = rectParent.left + "px";
+				modal.style.top = rectParent.top + "px";
+			}
+			__center.call(this);
+			__layoutCloseButton.call(this);
+		}
+	};
+
+	var __layoutCloseButton = function __layoutCloseButton() {
+		var content = this.refs.content;
+		var rect = content.getBoundingClientRect();
+		var right = rect.width + rect.left - 25;
+		var top = rect.top - 20;
+		if (top <= 0) {
+			top += 20;
+			content.style.top = top + "px";
+			top = top - 20;
+		}
+		if (this.state.closeTop != top || this.state.closeLeft != right) this.setState({ closeTop: top, closeLeft: right });
+	};
+
+	/**
+	*/
+
+	var __center = function __center() {
+
+		var modal = this.refs.modal;
+		var content = this.refs.content;
+		var rect = modal.getBoundingClientRect();
+		var isCenterX = this.props.center || this.props.centerX || false;
+		var isCenterY = this.props.center || this.props.centerY || false;
+		if (isCenterX == true) __centerX.call(this, rect);
+		if (isCenterY == true) __centerY.call(this, rect);
+	};
+
+	var __centerX = function __centerX(rect) {
+		var content = this.refs.content;
+		var rectContent = content.getBoundingClientRect();
+		var xPos = rect.width * 0.5 - rectContent.width * 0.5 + rect.left;
+		content.style.left = parseInt(xPos) + "px";
+	};
+
+	var __centerY = function __centerY(rect) {
+		var content = this.refs.content;
+		var rectContent = content.getBoundingClientRect();
+		var yPos = rect.height * 0.5 - rectContent.height * 0.5 + rect.top;
+		content.style.top = parseInt(yPos) + "px";
+	};
+
+	var __doubleClick = function __doubleClick(event) {
+		var event = event || window.event;
+		if (event) {
+			event.preventDefault();
+			if (this.props.onSelect) {
+				this.props.onSelect(this, event);
+			}
+		}
+	};
+
+	var __onClose = function __onClose() {
+		if (this.props.onClose) {
+			this.props.onClose();
+		}
+	};
+
+	Dialog.Button = CloseButton;
+	module.exports = Dialog;
+
+	if (!module && window) {
+		window.jimobama = { "Dialog": Dialog };
+	}
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(198)(module)))
+
+/***/ },
+/* 198 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports = function (module) {
+		if (!module.webpackPolyfill) {
+			module.deprecate = function () {};
+			module.paths = [];
+			// module.parent = undefined by default
+			module.children = [];
+			module.webpackPolyfill = 1;
+		}
+		return module;
+	};
+
+/***/ },
+/* 199 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+	var cssStyle = __webpack_require__(200);
+
+	var Button = React.createClass({
+		displayName: "Button",
+
+		getInitialState: function getInitialState() {
+			return { pressed: false };
+		},
+		render: function render() {
+			var flat = this.state.pressed ? "0px 4px 8px 0px rgba(0,0,0,0.2)" : null;
+			var hasIcon = this.props.icon ? true : false;
+			var style = Object.assign({
+				boxShadow: "0px 0px 1px 0px rgba(0,0,0,0.2)"
+			}, this.props.style);
+			var defaultClassName = cssStyle.button;
+			var className = defaultClassName + " " + this.props.className;
+			return React.createElement("input", {
+				className: className,
+				type: "button",
+				value: this.props.value,
+				style: style,
+				disabled: this.props.disabled ? "disabled" : "",
+				onMouseEnter: __mouseEnter.bind(this),
+				onMouseLeave: __mouseLeave.bind(this),
+				onMouseDown: __mouseDown.bind(this),
+				onMouseUp: __mouseUp.bind(this),
+				onClick: __onClicked.bind(this)
+
+			});
+		}
+	});
+
+	var __mouseLeave = function __mouseLeave(event) {
+		if (this.props.disabled) return;
+		if (this.props.onMouseLeave) {
+			this.props.onMouseLeave(this, this.props.eventKey, event.clientX, event.clientY);
+		}
+	};
+	var __mouseEnter = function __mouseEnter(event) {
+		if (this.props.disabled) return;
+		if (this.props.onMouseEnter) {
+			this.props.onMouseEnter(this, this.props.eventKey, event.clientX, event.clientY);
+		}
+	};
+	var __mouseUp = function __mouseUp(event) {
+		if (this.props.disabled) return;
+		if (this.props.onMouseUp) {
+			this.props.onMouseUp(this, this.props.eventKey, event.clientX, event.clientY);
+		}
+	};
+
+	var __mouseDown = function __mouseDown(event) {
+		if (this.props.disabled) return;
+		if (this.props.onMouseUp) {
+			this.props.onMouseDown(this, this.props.eventKey, event.clientX, event.clientY);
+		}
+	};
+	var __onClicked = function __onClicked(event) {
+		if (this.props.disabled) return;
+		if (this.props.onClick) {
+			this.props.onClick(this, this.props.eventKey);
+		}
+	};
+	module.exports = Button;
+
+/***/ },
+/* 200 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(201);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(187)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../css-loader/index.js!./button.react.css", function() {
+				var newContent = require("!!./../../../../css-loader/index.js!./button.react.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 201 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(184)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\r\n._13TQGISKEx44dbVyYroeFA{\r\n  background-color:transparent;\r\n  background-position:center center ;\r\n  background-repeat: no-repeat;\r\n  background-size: 15px 15px;\t\r\n  border:0px;\r\n  cursor:pointer;\r\n}\r\n\r\n", ""]);
+
+	// exports
+	exports.locals = {
+		"button": "_13TQGISKEx44dbVyYroeFA"
+	};
+
+/***/ },
+/* 202 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(203);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(187)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../css-loader/index.js!./dialog.react.css", function() {
+				var newContent = require("!!./../../../../css-loader/index.js!./dialog.react.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 203 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(184)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "._3YOkBi9SUc83fQJNX1_pll{\r\n  border:0px solid #000;\r\n  position:fixed;  \r\n  height:100%;\r\n  top: 0px;\r\n  left:0px;\r\n  overflow: auto;\r\n  background-color:#000000;\r\n  background-color:rgb(0,0,0);\r\n  background-color:rgba(0,0,0,0.2);\r\n  z-index:1;\r\n  padding:0px;\r\n  margin:0px;\r\n  position:relative;\r\n}\r\n\r\n._3YOkBi9SUc83fQJNX1_pll ._2WlPOXdNDCRQ7XW4579uWg{\r\n  margin:0px;\r\n  overflow:hidden;\r\n  padding:0px;\r\n  background-color: #fefefe;\r\n  position:relative;\r\n}\r\n\r\n\r\n\r\n._3YOkBi9SUc83fQJNX1_pll ._2Ey-YuHBS7q4ljgAwIPtdP{\r\n\twidth:40px;\r\n\theight:40px;\r\n\tborder:0px solid red;\r\n\tpadding:2px;\r\n\tposition:absolute;\r\n\tbackground-image:url(" + __webpack_require__(204) + ");\r\n\tbackground-size:20px 20px;\r\n\tbackground-color:#d9d9d9;\r\n\tborder:2px solid #fff;\r\n}\r\n._3YOkBi9SUc83fQJNX1_pll ._2Ey-YuHBS7q4ljgAwIPtdP:hover{\r\n\tbackground-size:25px 25px;\r\n\tbackground-color:#ff9999;\r\n}\r\n@media only screen and (min-width: 866px) \r\n{\r\n\r\n\t._3YOkBi9SUc83fQJNX1_pll ._2WlPOXdNDCRQ7XW4579uWg{\r\n\t  width:60%;\r\n\t}\r\n\r\n}", ""]);
+
+	// exports
+	exports.locals = {
+		"modal": "_3YOkBi9SUc83fQJNX1_pll",
+		"dialog": "_2WlPOXdNDCRQ7XW4579uWg",
+		"close": "_2Ey-YuHBS7q4ljgAwIPtdP"
+	};
+
+/***/ },
+/* 204 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAA3pJREFUeJztmU+P20QYh5/XaVqxaImzUg8Lwt7gFVwqLlyQuHKDIxIHJAriT8suX4DPQbdVxYlCrrQVB6QeOHEpAiTEAanKJrEPbBGg2AWkIlEPh921FjeOk8mMI8E8t/j1vDO/J3HkscHhcDgcDofD4XD8H5ElxnrRk1uvKOFp1ZJbo9Hoa2OrmoPtMHw+V/KiIv9xlCSfAUqnj7aAXhhe9ZB3jz7mKC7uJ+OPdPstwlNheFGQyxytXykuD5Pxrk4vLQFBEHTb4v1WGq9QXLAtoReG73nIXmnuXNqnuoPB4N6i/TxzS0MQrkbB1jsGe/6LivBL0dIZlGXZfd/vPC7Ic6WSILy80fEPJln6rYH1FcwKrxRX9kfD6zp9tQQApFn2hd957BkROVcqGZdQ8833h8n4App/gtoCAJVm2XXbEurC78fj88AD3f7LCADLEmyHh+UFwBwSul3/7iRdTEIT4cGMAKiRIPDSIhKaCg/mBIAhCU2GB7MCYB4JfufnSZZ9M21w0+HBvAColSBTJawiPNgRAAtKWFV4KiY0SasXBH1PvFen1JRC7SiQVYWnYlLTzJQwYx3Ww4O9S+Aks+8TVhgemhEAsyWUaSw8NHMJnKQVhVu3gfIuEgCl8tvDJHmBhsJDc78AAKKgt4vwVlVdRJ7o+p27VfcJNmhMQBT03kfUhzWnVd4n2KIRAXOGP6ZRCdYF1ITvAz8Az5aOH0rQ2EUuilUBURDsInKpotzfj8evT7L0xobvR0yVsNguUgdrAg7DezPDAzmgJll6c1USrAiYFV6hPh3G8XkOwxeH6yTYeNAKFgRsh+EO4u1Nq1WEL8qzJNh62mxUwHYY7qjDjc1D1IQvTmtagjEBBsIXpzcpwYiAmvCfDOP4DeYLXwybQ8JPkyz9TnPJBUsLOAp/iWlvbPTCF8ObkLCUAIvhiza2JWgLiILe2whXmBI+R10bxfGbLBf+mFoJ3a4/nqTp9zrNtbbDm5uba2unz/wCrJVrhsOfpBWFWx8Drz00Z57/3jpz+uxgMPhr0aZar8fb7XaHZsMDPDh6UNIvFzzPW/f+9NZ1mmoJSJLkANRXJ49ZDn9MlYQv7xzc+VWnofZ/wKPr6zdPefIIcE9gbxjHH2A3/DFqkqU3Njr+H4gSlHz+t6idLMvuNzC3w+FwOBwOh8PhcDgc/wX+AX8TFdFIL2t/AAAAAElFTkSuQmCC"
 
 /***/ }
 /******/ ]);

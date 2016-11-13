@@ -9,7 +9,7 @@ module.exports={
 
     	applogo:{
     		 "slogon":"What can possible go wrong...",
-    		 "note":"Share and watch online movies with your friends and family with simple clicks.",
+    		 "note":"The front page is a simple clear react login page , that can be easy integrated into any application.",
     	},
 
     	login:{
