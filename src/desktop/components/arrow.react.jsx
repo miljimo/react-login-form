@@ -1,11 +1,12 @@
 var React = require("react");
-
+var dtheme     = require("../../master/themes/standard.theme.jsx");
 
 
 var Arrow = React.createClass({
 
 	 render:(function(){
 
+	 	 var theme  = Object.assign(dtheme, this.props.theme);
 	 	 var style =Object.assign({
 	 	 	width:"0px",
 	 	 	"height":"0px",	 	 	
@@ -13,7 +14,7 @@ var Arrow = React.createClass({
 	 	 	"borderLeft":"10px solid transparent",
 	 	 	"borderTop":"7px solid transparent",
 	 	 	"borderRight":"10px solid transparent",
-	 	 	"borderBottom":"7px solid rgba(210, 72, 70,1)",
+	 	 	"borderBottom":"7px solid "+theme.colors.primary,
 
 	 	 }, this.props.style);
 	 	 

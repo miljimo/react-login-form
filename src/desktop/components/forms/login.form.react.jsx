@@ -5,6 +5,7 @@ var Image  = require("../image.react.jsx");
 var Arrow  = require("../arrow.react.jsx");
 var LineEdit  = require("../line.edit.react.jsx");
 var cssStyle  = require("../../assets/css/login.react.css");
+var defaultTheme     = require("../../../master/themes/standard.theme.jsx");
 
 
 
@@ -18,9 +19,10 @@ var LoginForm = React.createClass({
 
      }),   
      render:(function(){
+          var  theme  =Object.assign(defaultTheme, this.props.theme);
 
-          var style  =Object.assign({
-          	"backgroundColor":"rgba(234, 86, 84,1)",
+          var  style  =Object.assign({
+          	"backgroundColor":theme.colors.windowBackground,
           	"width":"300px",
           	"height":"auto",
           	"position":"relative",
@@ -28,17 +30,21 @@ var LoginForm = React.createClass({
           	"overflow":"hidden",
             "paddingBottom":"20px",
             "paddingTop":"20px",
-
           	image:{
           		 width:"70px",
           		"height":"70px",
           		"margin":"10px auto auto auto",
-          		"border":"2px solid rgba(210, 72, 70,1)",
+          		"border":"3px solid "+theme.colors.primaryDark,
           		"borderRadius":"100%",
           		"position":"relative",
-          		"backgroundColor":"rgba(210, 72, 70,0.8)",
+          		"backgroundColor":theme.colors.primary,
               "visibility":(this.props.imageSrc && this.props.imageSrc !="")?"visible":"hidden",
               "display":(this.props.imageSrc && this.props.imageSrc !="")?"block":"none",
+              innerImage:{
+                 width:"65px",
+                 height:"65px",
+                 "margin":"3px auto"
+              }
 
           	},
             "arrow":{
@@ -52,15 +58,14 @@ var LoginForm = React.createClass({
                     "display":(this.props.imageSrc && this.props.imageSrc !="")?"block":"none",
 
             },
-
           	form:{
-          		"border":"2px solid rgba(210, 72, 70,1)",
+          		"border":"2px solid "+theme.colors.primary,
           		"margin":"0px auto",
-          		"backgroundColor":"rgba(210, 72, 70,0.8)",
+          		"backgroundColor":theme.colors.primary,
           		"position":"relative",
-          		"width":"80%",
+          		"width":"85%",
+              "borderRadius":"2px",
           		"padding":"5px",
-
 
                     fields:{
                          overflow:"hidden",
@@ -102,7 +107,7 @@ var LoginForm = React.createClass({
      	   return (
      	   	   <div  ref='login' style={style} className={this.props.className} onFocus={__onfocus.bind(this)} onBlur={__onBlur.bind(this)} >
      	   	      <div style={style.image}>
-                       <Image   src={this.props.imageSrc || ""}/>
+                       <Image   src={this.props.imageSrc || ""} style={style.image.innerImage}/>
      	   	      </div>
 
                     <div style={style.arrow}>
@@ -114,7 +119,7 @@ var LoginForm = React.createClass({
                           <LineEdit onTextChange={__textChange.bind(this)}  ref="password" className={cssStyle.password}  password={true} style={style.form.fields.password} placeholder={this.props.passwordLabel}/>
                       </div>
 
-                         <Button text="LOGIN"  style={style.form.button} onClick ={__onSubmit.bind(this)} />
+                         <Button  theme ={theme} text="LOGIN"  style={style.form.button} onClick ={__onSubmit.bind(this)} />
           	   	</div>
      	   	    
      	   	   </div>

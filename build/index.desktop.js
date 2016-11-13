@@ -48,7 +48,7 @@
 
 	var React = __webpack_require__(1);
 	var ReactDom = __webpack_require__(34);
-	var App = __webpack_require__(184);
+	var App = __webpack_require__(172);
 
 	ReactDom.render(React.createElement(App, null), document.getElementById("app"));
 
@@ -21425,14 +21425,78 @@
 
 	"use strict";
 
+	var React = __webpack_require__(1);
+	var LoginForm = __webpack_require__(173);
+
+	var App = React.createClass({
+		displayName: "App",
+
+
+		getInitialState: function getInitialState() {
+			return { image1: null, image2: null };
+		},
+		render: function render() {
+			return React.createElement(
+				"div",
+				null,
+				React.createElement(LoginForm, { onTextChange: onChange1.bind(this),
+					imageSrc: this.state.image1,
+					usernameLabel: "Username",
+					passwordLabel: "Password", onSubmit: onsubmit.bind(this) }),
+				React.createElement(LoginForm, { onTextChange: onChange2.bind(this),
+					imageSrc: this.state.image2,
+					usernameLabel: "Username",
+					passwordLabel: "Password", onSubmit: onsubmit.bind(this) })
+			);
+		}
+	});
+
+	var onsubmit = function onsubmit(event) {
+
+		if (event) {
+			var username = event.username;
+			var password = event.password;
+			console.log(event);
+		}
+	};
+
+	var onChange1 = function onChange1(event) {
+		if (!this.state.image1 && event.username == 'obaro') {
+			this.setState({ image1: "C:/Users/Obaro/Desktop/FirstReactApp/src/master/images/obaro.png" });
+		} else {
+			if (this.state.image1 != null && event.username != "obaro") {
+				this.setState({ image1: null });
+			}
+		}
+	};
+
+	var onChange2 = function onChange2(event) {
+		if (!this.state.image2 && event.username == 'obaro') {
+			this.setState({ image2: "C:/Users/Obaro/Desktop/FirstReactApp/src/master/images/obaro.png" });
+		} else {
+			if (this.state.image2 != null && event.username != "obaro") {
+				this.setState({ image2: null });
+			}
+		}
+	};
+
+	module.exports = App;
+
+/***/ },
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	var React = __webpack_require__(1);
-	var Button = __webpack_require__(173);
-	var Image = __webpack_require__(174);
-	var Arrow = __webpack_require__(176);
-	var LineEdit = __webpack_require__(177);
-	var cssStyle = __webpack_require__(178);
+	var Button = __webpack_require__(174);
+	var Image = __webpack_require__(175);
+	var Arrow = __webpack_require__(177);
+	var LineEdit = __webpack_require__(178);
+	var cssStyle = __webpack_require__(179);
+	var defaultTheme = __webpack_require__(185);
 
 	var LoginForm = React.createClass({
 	     displayName: "LoginForm",
@@ -21444,8 +21508,10 @@
 	     render: function render() {
 	          var _arrow;
 
+	          var theme = Object.assign(defaultTheme, this.props.theme);
+
 	          var style = Object.assign({
-	               "backgroundColor": "rgba(234, 86, 84,1)",
+	               "backgroundColor": theme.colors.windowBackground,
 	               "width": "300px",
 	               "height": "auto",
 	               "position": "relative",
@@ -21453,17 +21519,21 @@
 	               "overflow": "hidden",
 	               "paddingBottom": "20px",
 	               "paddingTop": "20px",
-
 	               image: {
 	                    width: "70px",
 	                    "height": "70px",
 	                    "margin": "10px auto auto auto",
-	                    "border": "2px solid rgba(210, 72, 70,1)",
+	                    "border": "3px solid " + theme.colors.primaryDark,
 	                    "borderRadius": "100%",
 	                    "position": "relative",
-	                    "backgroundColor": "rgba(210, 72, 70,0.8)",
+	                    "backgroundColor": theme.colors.primary,
 	                    "visibility": this.props.imageSrc && this.props.imageSrc != "" ? "visible" : "hidden",
-	                    "display": this.props.imageSrc && this.props.imageSrc != "" ? "block" : "none"
+	                    "display": this.props.imageSrc && this.props.imageSrc != "" ? "block" : "none",
+	                    innerImage: {
+	                         width: "65px",
+	                         height: "65px",
+	                         "margin": "3px auto"
+	                    }
 
 	               },
 	               "arrow": (_arrow = {
@@ -21472,13 +21542,13 @@
 	                    "border": "0px solid blue",
 	                    "textAlign": "center"
 	               }, _defineProperty(_arrow, "margin", "10px auto 0px auto"), _defineProperty(_arrow, "overflow", "hidden"), _defineProperty(_arrow, "visibility", this.props.imageSrc && this.props.imageSrc != "" ? "visible" : "hidden"), _defineProperty(_arrow, "display", this.props.imageSrc && this.props.imageSrc != "" ? "block" : "none"), _arrow),
-
 	               form: {
-	                    "border": "2px solid rgba(210, 72, 70,1)",
+	                    "border": "2px solid " + theme.colors.primary,
 	                    "margin": "0px auto",
-	                    "backgroundColor": "rgba(210, 72, 70,0.8)",
+	                    "backgroundColor": theme.colors.primary,
 	                    "position": "relative",
-	                    "width": "80%",
+	                    "width": "85%",
+	                    "borderRadius": "2px",
 	                    "padding": "5px",
 
 	                    fields: {
@@ -21518,7 +21588,7 @@
 	               React.createElement(
 	                    "div",
 	                    { style: style.image },
-	                    React.createElement(Image, { src: this.props.imageSrc || "" })
+	                    React.createElement(Image, { src: this.props.imageSrc || "", style: style.image.innerImage })
 	               ),
 	               React.createElement(
 	                    "div",
@@ -21534,7 +21604,7 @@
 	                         React.createElement(LineEdit, { onTextChange: __textChange.bind(this), ref: "username", className: cssStyle.username, style: style.form.fields.username, placeholder: this.props.usernameLabel }),
 	                         React.createElement(LineEdit, { onTextChange: __textChange.bind(this), ref: "password", className: cssStyle.password, password: true, style: style.form.fields.password, placeholder: this.props.passwordLabel })
 	                    ),
-	                    React.createElement(Button, { text: "LOGIN", style: style.form.button, onClick: __onSubmit.bind(this) })
+	                    React.createElement(Button, { theme: theme, text: "LOGIN", style: style.form.button, onClick: __onSubmit.bind(this) })
 	               )
 	          );
 	     }
@@ -21592,83 +21662,87 @@
 	module.exports = LoginForm;
 
 /***/ },
-/* 173 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var React = __webpack_require__(1);
-
-	var Button = React.createClass({
-		displayName: "Button",
-
-
-		getInitialState: function getInitialState() {
-			return { mouseOver: false };
-		},
-		render: function render() {
-			var style = Object.assign({
-				"border": "1px solid #f0c733",
-				"boxShadow": "0px 1px 2px 0px rgba(0,0,0,0.2)",
-				"padding": "5px",
-				"backgroundColor": "#f0c733",
-				"color": "rgba(211, 72, 69,0.8)",
-				"borderRadius": "5px",
-				"cursor": "pointer",
-				"width": "100%",
-				"fontWeight": "300"
-			}, this.props.style);
-
-			var className = this.props.className;
-
-			return React.createElement("input", {
-				style: style,
-				className: className,
-				type: "button",
-				value: this.props.text,
-				onClick: __buttonClick.bind(this),
-				onMouseEnter: __buttonMouseOver.bind(this),
-				onMouseLeave: __buttonMouseLeave.bind(this)
-
-			});
-		}
-
-	});
-
-	var __buttonClick = function __buttonClick(event) {
-		if (typeof this.props.onClick == "function") {
-			this.props.onClick(this, event);
-		}
-	};
-
-	var __buttonMouseOver = function __buttonMouseOver(event) {
-
-		if (event) {
-			if (!this.state.mouseOver) {
-				this.setState({ mouseOver: true });
-			}
-		}
-	};
-
-	var __buttonMouseLeave = function __buttonMouseLeave(event) {
-
-		if (event) {
-			if (this.state.mouseOver) {
-				this.setState({ mouseOver: false });
-			}
-		}
-	};
-
-	module.exports = Button;
-
-/***/ },
 /* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	var React = __webpack_require__(1);
-	var Path = __webpack_require__(175);
+	var dtheme = __webpack_require__(185);
+
+	var Button = React.createClass({
+			displayName: "Button",
+
+
+			getInitialState: function getInitialState() {
+					return { mouseOver: false };
+			},
+			render: function render() {
+
+					var theme = Object.assign(dtheme, this.props.theme);
+
+					var style = Object.assign({
+							"border": "1px solid " + theme.colors.accent,
+							"boxShadow": "0px 1px 2px 0px rgba(0,0,0,0.2)",
+							"padding": "5px",
+							"backgroundColor": theme.colors.accent,
+							"color": theme.colors.primaryText,
+							"borderRadius": "5px",
+							"cursor": "pointer",
+							"width": "100%",
+							"fontWeight": "300"
+					}, this.props.style);
+
+					var className = this.props.className;
+
+					return React.createElement("input", {
+							style: style,
+							className: className,
+							type: "button",
+							value: this.props.text,
+							onClick: __buttonClick.bind(this),
+							onMouseEnter: __buttonMouseOver.bind(this),
+							onMouseLeave: __buttonMouseLeave.bind(this)
+
+					});
+			}
+
+	});
+
+	var __buttonClick = function __buttonClick(event) {
+			if (typeof this.props.onClick == "function") {
+					this.props.onClick(this, event);
+			}
+	};
+
+	var __buttonMouseOver = function __buttonMouseOver(event) {
+
+			if (event) {
+					if (!this.state.mouseOver) {
+							this.setState({ mouseOver: true });
+					}
+			}
+	};
+
+	var __buttonMouseLeave = function __buttonMouseLeave(event) {
+
+			if (event) {
+					if (this.state.mouseOver) {
+							this.setState({ mouseOver: false });
+					}
+			}
+	};
+
+	module.exports = Button;
+
+/***/ },
+/* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+	var Path = __webpack_require__(176);
 
 	var Image = React.createClass({
 	  displayName: "Image",
@@ -21695,7 +21769,7 @@
 	module.exports = Image;
 
 /***/ },
-/* 175 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -21926,12 +22000,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 176 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	var React = __webpack_require__(1);
+	var dtheme = __webpack_require__(185);
 
 	var Arrow = React.createClass({
 		displayName: "Arrow",
@@ -21939,6 +22014,7 @@
 
 		render: function render() {
 
+			var theme = Object.assign(dtheme, this.props.theme);
 			var style = Object.assign({
 				width: "0px",
 				"height": "0px",
@@ -21946,7 +22022,7 @@
 				"borderLeft": "10px solid transparent",
 				"borderTop": "7px solid transparent",
 				"borderRight": "10px solid transparent",
-				"borderBottom": "7px solid rgba(210, 72, 70,1)"
+				"borderBottom": "7px solid " + theme.colors.primary
 
 			}, this.props.style);
 
@@ -21957,7 +22033,7 @@
 	module.exports = Arrow;
 
 /***/ },
-/* 177 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22017,16 +22093,16 @@
 	module.exports = LineEdit;
 
 /***/ },
-/* 178 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(179);
+	var content = __webpack_require__(180);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(183)(content, {});
+	var update = __webpack_require__(184)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -22043,15 +22119,15 @@
 	}
 
 /***/ },
-/* 179 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(180)();
+	exports = module.exports = __webpack_require__(181)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "\r\n\r\n._2zfTn7M8AZPVs6A3D4jdiH{\r\n\r\n background-image:url(" + __webpack_require__(181) + ");\r\n\t\r\n}\r\n\r\n\r\n._3rLQ1zPDP_DjEm8ppfVpa8{\r\n\t background-image:url(" + __webpack_require__(182) + ");\r\n\t\r\n\r\n}", ""]);
+	exports.push([module.id, "\r\n\r\n._2zfTn7M8AZPVs6A3D4jdiH{\r\n\r\n background-image:url(" + __webpack_require__(182) + ");\r\n\t\r\n}\r\n\r\n\r\n._3rLQ1zPDP_DjEm8ppfVpa8{\r\n\t background-image:url(" + __webpack_require__(183) + ");\r\n\t\r\n\r\n}", ""]);
 
 	// exports
 	exports.locals = {
@@ -22060,7 +22136,7 @@
 	};
 
 /***/ },
-/* 180 */
+/* 181 */
 /***/ function(module, exports) {
 
 	/*
@@ -22116,19 +22192,19 @@
 
 
 /***/ },
-/* 181 */
+/* 182 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA1ElEQVRIieWUwQ2EMAwEKYESKOFKogRKoANKoISUEcnelUugBErIfcIHEXLI+aCz5O9O1s666/6izKxX1YnkCsAABBH5NBMHEACkiw5m1rsAqjoVxBOApKqTC5DHUgQA2FyAm/EcbV4HSwUQXABVnSs7mF2A2ohIri5AbUQkFxcgu9hKC3bn4M6Fe/5H5TSfXWxNXn9UvkHtAnYBODvYmwibWV/ageuLxhiHLLxXkpxILjHG4emLq8KPM1G5/b92+fiJyOgUTwCSiIxFAMnV20XAK+sLz7WPgwl6A4sAAAAASUVORK5CYII="
 
 /***/ },
-/* 182 */
+/* 183 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA90lEQVRIieWVTQ3DMAyFC6EQCmEQCmEQCqEQxqAQBmEQerTk9yxDGIRA6A7zdthff9JKmxYphyjW+yz7JS6Kb1juXgKoAbQADgDq1cQB1CTPJHsz6wAcSPYkUzaI5D7E9o93qroL8NPdpOXuJcnzpyxFpCKZRKSaDVDVxsy6sbgoWzsbYGZHVW3G4qKMp9kAkqcpTYxe+BJAvzrA3UtVbVS1Ielm1t3O7zaAlmS6nceydpJD5k4vxcNyueIDyeGlbf8G0JvZcSvA/TGNQZYC7u6ID3D9Erl7GYBteiAi1dS4HBeln7bpckBMsO0ARXGdTpniiQ/D5wJk+h8P23spMAAAAABJRU5ErkJggg=="
 
 /***/ },
-/* 183 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -22380,46 +22456,32 @@
 
 
 /***/ },
-/* 184 */
-/***/ function(module, exports, __webpack_require__) {
+/* 185 */
+/***/ function(module, exports) {
 
 	"use strict";
 
-	var React = __webpack_require__(1);
-	var LoginForm = __webpack_require__(172);
+	/**
+	   Standard theme for the components
 
-	var App = React.createClass({
-		displayName: "App",
+	*/
+	module.exports = {
 
+	    name: "standard-theme",
+	    version: "1.0.0",
+	    "author": "obaro",
+	    "opacity": "0.8",
+	    colors: {
+	        "primary": "#9e9e9e",
+	        "primaryDark": "#757575",
+	        "accent": "#424242",
+	        "windowBackground": "#e0e0e0",
+	        "navigatorBar": "#bdbdbd",
+	        "primaryText": "#f5f5f5"
 
-		getInitialState: function getInitialState() {
-			return { image: null };
-		},
-		render: function render() {
-			return React.createElement(LoginForm, { onTextChange: onChange.bind(this), imageSrc: this.state.image, usernameLabel: "Username", passwordLabel: "Password", onSubmit: onsubmit.bind(this) });
-		}
-	});
+	    }
 
-	var onsubmit = function onsubmit(event) {
-
-		if (event) {
-			var username = event.username;
-			var password = event.password;
-			console.log(event);
-		}
 	};
-
-	var onChange = function onChange(event) {
-		if (!this.state.image && event.username == 'obaro') {
-			this.setState({ image: "C:/Users/Obaro/Desktop/FirstReactApp/src/master/images/obaro.png" });
-		} else {
-			if (this.state.image != null) {
-				this.setState({ image: null });
-			}
-		}
-	};
-
-	module.exports = App;
 
 /***/ }
 /******/ ]);

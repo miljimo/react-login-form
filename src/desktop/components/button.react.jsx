@@ -1,5 +1,6 @@
 
 var React = require("react");
+var dtheme     = require("../../master/themes/standard.theme.jsx");
 
 var Button =React.createClass({
 
@@ -8,12 +9,15 @@ var Button =React.createClass({
 
 	}),
 	render:(function(){
+
+		var theme  = Object.assign(dtheme, this.props.theme );
+
 		 var style =Object.assign({
-		 	"border":"1px solid #f0c733",
+		 	"border":"1px solid "+theme.colors.accent,
 		 	"boxShadow":"0px 1px 2px 0px rgba(0,0,0,0.2)",
 		 	"padding":"5px",
-		 	"backgroundColor":"#f0c733",
-		 	"color":"rgba(211, 72, 69,0.8)",
+		 	"backgroundColor":theme.colors.accent,
+		 	"color":theme.colors.primaryText,
 		 	"borderRadius":"5px",		 	
 		 	"cursor":"pointer",
 		 	"width":"100%",
