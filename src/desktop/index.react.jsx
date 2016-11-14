@@ -175,7 +175,7 @@ var onLoginChange=(function(event){
 })
 
 var onRegisterChange=(function(event){
-	if(typeof this.props.onChange =='function'){
+	if(typeof this.props.options.onChange =='function'){
 		var data =Object.assign({
 			"form":"register"
 		}, event.data)
