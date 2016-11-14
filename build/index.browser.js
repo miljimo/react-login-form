@@ -49,26 +49,27 @@
 	var React = __webpack_require__(1);
 	var ReactDom = __webpack_require__(34);
 	var Index = __webpack_require__(172);
-	var DashBoard = __webpack_require__(205);
+	var DashBoard = __webpack_require__(173);
 
 	var ImageURL = "C:/Users/Obaro/Desktop/FirstReactApp/src/master/images/defaultuser.png";
+	var options = {
+		"modal": true,
+		"center": true,
+		"lang": "en",
+		imageSrc: ImageURL,
+		onSubmit: function onSubmit(data) {
+			console.log(data);
+		},
+		onChange: function onChange(data) {
+			console.log(data);
+		},
+		onClose: function onClose() {
+			console.log(close);
+		}
 
-	var onSubmit = function onSubmit(data) {
-
-		console.log(data);
 	};
 
-	var onChange = function onChange(data) {
-
-		onSubmit(data);
-	};
-
-	var onClose = function onClose() {
-		console.log("Closed");
-		return false;
-	};
-
-	ReactDom.render(React.createElement(Index, { onClose: onClose, imageSrc: ImageURL, modal: true, onChange: onChange, onSubmit: onSubmit, lang: "en" }), document.getElementById("app"));
+	ReactDom.render(React.createElement(Index, { options: options }), document.getElementById("app"));
 
 /***/ },
 /* 1 */
@@ -21485,20 +21486,29 @@
 	  				isModal={bool}}
 	*/
 	var React = __webpack_require__(1);
-	var LoginForm = __webpack_require__(173);
-	var Register = __webpack_require__(189);
-	var AppLogo = __webpack_require__(194);
-	var dtheme = __webpack_require__(175);
-	var Dialog = __webpack_require__(197);
+	var LoginForm = __webpack_require__(178);
+	var Register = __webpack_require__(190);
+	var AppLogo = __webpack_require__(195);
+	var dtheme = __webpack_require__(174);
+	var Dialog = __webpack_require__(198);
 
 	var IndexPage = React.createClass({
 		displayName: "IndexPage",
 
 
-		getInitialState: function getInitialState() {
-			return { isRegister: false
-
+		getDefaultProps: function getDefaultProps() {
+			var options = {
+				modal: false,
+				"lang": "en",
+				onSubmit: function onSubmit() {},
+				onChange: function onChange() {},
+				onClose: function onClose() {}
 			};
+			return { "options": options };
+		},
+
+		getInitialState: function getInitialState() {
+			return { isRegister: false };
 		},
 		render: function render() {
 			var theme = Object.assign(dtheme, this.props.theme);
@@ -21542,8 +21552,8 @@
 
 			return React.createElement(
 				Dialog,
-				{ visible: this.state.visible, fillParent: this.props.modal, modal: this.props.modal,
-					center: this.props.modal, style: style, enableCloseButton: this.props.modal || false, onClose: __onClose.bind(this) },
+				{ visible: this.state.visible, fillParent: this.props.options.modal, modal: this.props.options.modal,
+					center: this.props.options.center, style: style, enableCloseButton: this.props.options.modal || false, onClose: __onClose.bind(this) },
 				React.createElement(
 					"div",
 					{ style: style.leftContent },
@@ -21564,14 +21574,14 @@
 		var contentHtml = null;
 		if (this.state.isRegister) {
 			contentHtml = React.createElement(Register, { theme: theme, onTextChange: onRegisterChange.bind(this),
-				imageSrc: this.props.imageSrc,
+				imageSrc: this.props.options.imageSrc,
 				style: style.register,
 				onSubmit: onRegister.bind(this) });
 		} else {
 			contentHtml = React.createElement(LoginForm, { theme: theme,
 				onTextChange: onLoginChange.bind(this),
 				style: style.login,
-				imageSrc: this.props.imageSrc,
+				imageSrc: this.props.options.imageSrc,
 				onSubmit: onLogin.bind(this) });
 		}
 
@@ -21588,8 +21598,8 @@
 			var data = Object.assign({
 				"form": "login"
 			}, event.data);
-			if (typeof this.props.onSubmit == 'function') {
-				this.props.onSubmit(data);
+			if (typeof this.props.options.onSubmit == 'function') {
+				this.props.options.onSubmit(data);
 			}
 		}
 	};
@@ -21605,19 +21615,19 @@
 				"form": "register"
 			}, event.data);
 
-			if (typeof this.props.onSubmit == 'function') {
-				this.props.onSubmit(data);
+			if (typeof this.props.options.onSubmit == 'function') {
+				this.props.options.onSubmit(data);
 			}
 		}
 	};
 
 	var onLoginChange = function onLoginChange(event) {
 
-		if (typeof this.props.onChange == 'function') {
+		if (typeof this.props.options.onChange == 'function') {
 			var data = Object.assign({
 				"form": "login"
 			}, event.data);
-			this.props.onChange(data);
+			this.props.options.onChange(data);
 		}
 	};
 
@@ -21626,27 +21636,27 @@
 			var data = Object.assign({
 				"form": "register"
 			}, event.data);
-			this.props.onChange(data);
+			this.props.options.onChange(data);
 		}
 	};
 
 	var __onSwitch = function __onSwitch() {
 		if (!this.state.isRegister) {
 			this.setState({ isRegister: true });
-			if (typeof this.props.onChange == 'function') {
-				this.props.onChange({ activeButton: "login" });
+			if (typeof this.props.options.onChange == 'function') {
+				this.props.options.onChange({ activeButton: "login" });
 			}
 		} else {
 			this.setState({ isRegister: false });
-			if (typeof this.props.onChange == 'function') {
-				this.props.onChange({ activeButton: "register" });
+			if (typeof this.props.options.onChange == 'function') {
+				this.props.options.onChange({ activeButton: "register" });
 			}
 		}
 	};
 
 	var __onClose = function __onClose() {
-		if (typeof this.props.onClose == 'function') {
-			var status = this.props.onClose(this);
+		if (typeof this.props.options.onClose == 'function') {
+			var status = this.props.options.onClose(this);
 			if (status == undefined || status == true) {
 				this.setState({ visible: false });
 			}
@@ -21664,279 +21674,81 @@
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	var React = __webpack_require__(1);
-	var Button = __webpack_require__(174);
-	var Image = __webpack_require__(179);
-	var Arrow = __webpack_require__(180);
-	var LineEdit = __webpack_require__(181);
-	var cssStyle = __webpack_require__(182);
-	var defaultTheme = __webpack_require__(175);
-	var Label = __webpack_require__(188);
+	//var cssStyle     = require("")
+	var dtheme = __webpack_require__(174);
 
-	var LoginForm = React.createClass({
-	  displayName: "LoginForm",
+	var Login = __webpack_require__(172);
+
+	var DashBoard = React.createClass({
+		displayName: "DashBoard",
 
 
-	  getInitialState: function getInitialState() {
-	    return { focus: false };
-	  },
-	  render: function render() {
-	    var _arrow;
+		render: function render() {
+			var _page;
 
-	    var theme = Object.assign(defaultTheme, this.props.theme);
+			var theme = Object.assign(dtheme, this.props.theme);
 
-	    var style = Object.assign({
-	      "backgroundColor": theme.colors.windowBackground,
-	      "width": "100%",
-	      "height": "auto",
-	      "position": "relative",
-	      "display": "block",
-	      "overflow": "hidden",
-	      "paddingBottom": "20px",
-	      "paddingTop": "20px",
-	      "border": "0px solid #eee",
-	      image: {
-	        width: "70px",
-	        "height": "70px",
-	        "margin": "10px auto auto auto",
-	        "border": "3px solid " + theme.colors.primary,
-	        "borderRadius": "100%",
-	        "position": "relative",
-	        "backgroundColor": theme.colors.primaryLight,
-	        "visibility": this.props.imageSrc && this.props.imageSrc != "" ? "visible" : "hidden",
-	        "display": this.props.imageSrc && this.props.imageSrc != "" ? "block" : "none",
-	        innerImage: {
-	          width: "65px",
-	          height: "65px",
-	          "margin": "3px auto"
-	        }
+			var style = Object.assign({
+				"backgroundColor": theme.colors.windowBackground,
+				"margin": "0px",
+				"padding": "0px",
+				"width": "100%",
+				"overflow": "auto",
+				"boxSizing": "border-box",
+				"position": "fixed",
+				"height": "100%",
 
-	      },
-	      error: {
-	        textAlign: "center",
-	        fontSize: "0.8em",
-	        "fontStyle": "italic",
-	        "color": theme.colors.error
+				drawer: {
+					width: "25%",
+					"margin": "0px",
+					"padding": "0px 0px 0px 1px",
+					"borderRight": "1px solid " + theme.colors.primaryDark,
+					"backgroundColor": theme.colors.primary,
+					"height": "100%",
+					"boxSizing": "border-box",
+					"color": theme.colors.primaryLight,
+					"fontWeight": "100",
+					position: "fixed",
+					"zIndex": 1,
+					"left": "0%"
+				},
+				"page": (_page = {
+					width: "75%",
+					"margin": "0px",
+					"padding": "0px 0px 0px 1px",
+					"border": "0px solid #000",
+					"backgroundColor": theme.colors.windowBackground,
+					"minHeight": "300px",
+					"boxSizing": "border-box",
+					"height": "100%",
+					"position": "relative",
+					"zIndex": 0,
+					"left": "25%"
+				}, _defineProperty(_page, "margin", "0px  0px 0px 0px"), _defineProperty(_page, "overflow", "scroll"), _page)
 
-	      },
-	      "arrow": (_arrow = {
-	        padding: "0px",
-	        "margin": "0px",
-	        "border": "0px solid blue",
-	        "textAlign": "center"
-	      }, _defineProperty(_arrow, "margin", "10px auto 0px auto"), _defineProperty(_arrow, "overflow", "hidden"), _defineProperty(_arrow, "visibility", this.props.imageSrc && this.props.imageSrc != "" ? "visible" : "hidden"), _defineProperty(_arrow, "display", this.props.imageSrc && this.props.imageSrc != "" ? "block" : "none"), _arrow),
-	      form: {
-	        "border": "2px solid " + theme.colors.primary,
-	        "margin": "0px auto",
-	        "backgroundColor": theme.colors.primary,
-	        "position": "relative",
-	        "width": "85%",
-	        "borderRadius": "2px",
-	        "padding": "5px",
+			}, this.props.style);
 
-	        fields: {
-	          overflow: "hidden",
-	          "borderRadius": "5px",
-	          "backgroundColor": theme.colors.primaryLight,
-	          "padding": "0px",
-	          "margin": "0px",
-	          "marginBottom": "10px",
-	          "position": "relative",
-	          "display": "block",
-
-	          username: {
-	            borderBottom: "1px solid #e6e6e6",
-	            "paddingLeft": "35px",
-	            "backgroundPosition": "5px center",
-	            "backgroundSize": "15px 15px",
-	            "backgroundRepeat": "no-repeat"
-	          },
-	          "password": {
-	            "paddingLeft": "35px",
-	            "backgroundPosition": "5px center",
-	            "backgroundSize": "15px 15px",
-	            "backgroundRepeat": "no-repeat"
-	          }
-	        },
-
-	        "button": {}
-
-	      }
-
-	    }, this.props.style);
-
-	    return React.createElement(
-	      "div",
-	      { ref: "login", style: style, className: this.props.className, onFocus: __onfocus.bind(this), onBlur: __onBlur.bind(this) },
-	      React.createElement(
-	        "div",
-	        { style: style.image },
-	        React.createElement(Image, { src: this.props.imageSrc || "", style: style.image.innerImage })
-	      ),
-	      React.createElement(
-	        Label,
-	        { theme: theme, style: style.error },
-	        this.props.errorMsg || null
-	      ),
-	      React.createElement(
-	        "div",
-	        { style: style.arrow },
-	        React.createElement(Arrow, null)
-	      ),
-	      React.createElement(
-	        "div",
-	        { style: style.form },
-	        React.createElement(
-	          "div",
-	          { style: style.form.fields },
-	          React.createElement(LineEdit, { onTextChange: __textChange.bind(this), ref: "username",
-	            className: cssStyle.username,
-	            style: style.form.fields.username,
-	            placeholder: theme.II8n.components.login.username }),
-	          React.createElement(LineEdit, { onTextChange: __textChange.bind(this),
-	            ref: "password", className: cssStyle.password,
-	            password: true, style: style.form.fields.password,
-	            placeholder: theme.II8n.components.login.password })
-	        ),
-	        React.createElement(Button, { theme: theme, text: theme.II8n.components.login.submit, style: style.form.button, onClick: __onSubmit.bind(this) })
-	      )
-	    );
-	  }
-
+			return React.createElement(
+				"div",
+				{ style: style },
+				React.createElement(
+					"div",
+					{ style: style.drawer },
+					"..."
+				),
+				React.createElement(
+					"div",
+					{ style: style.page },
+					React.createElement(Login, null)
+				)
+			);
+		}
 	});
 
-	LoginForm.prototype.componentDidMount = function (preState, preProps) {
-
-	  if (!this.__eventsAdded) {
-	    this.__eventsAdded = true;
-	    var target = this.refs.login;
-	    target.addEventListener("keypress", function (event) {
-	      __enter.call(this, event);
-	    }.bind(this));
-	  }
-	};
-
-	var __textChange = function __textChange(target, text) {
-	  try {
-	    if (typeof this.props.onTextChange == 'function') {
-	      this.props.onTextChange({ data: __getData.call(this), target: this });
-	    }
-	  } catch (error) {
-	    console.log(error);
-	  }
-	};
-
-	var __onSubmit = function __onSubmit(sender, event) {
-	  if (typeof this.props.onSubmit == 'function') {
-	    this.props.onSubmit({ data: __getData.call(this), target: this });
-	  }
-	};
-
-	var __onfocus = function __onfocus() {
-	  if (!this.state.focus) {
-	    this.setState({ focus: true });
-	  }
-	};
-
-	var __onBlur = function __onBlur(event) {
-	  if (this.state.focus) {
-	    this.setState({ focus: false });
-	  }
-	};
-
-	var __enter = function __enter(event) {
-	  if (this.state.focus) {
-	    var code = event.charCode || event.keyCode;
-	    if (code == 13) {
-	      //submit the form
-	      __onSubmit.call(this, this, event);
-	    }
-	  }
-	};
-
-	var __getData = function __getData() {
-	  var usernameValue = this.refs.username.get();
-	  var passwordValue = this.refs.password.get();
-	  return { username: usernameValue, password: passwordValue };
-	};
-
-	module.exports = LoginForm;
+	module.exports = DashBoard;
 
 /***/ },
 /* 174 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var React = __webpack_require__(1);
-	var dtheme = __webpack_require__(175);
-
-	var Button = React.createClass({
-			displayName: "Button",
-
-
-			getInitialState: function getInitialState() {
-					return { mouseOver: false };
-			},
-			render: function render() {
-
-					var theme = Object.assign(dtheme, this.props.theme);
-
-					var style = Object.assign({
-							"border": "0px solid " + theme.colors.accent,
-							"boxShadow": "0px 1px 2px 0px rgba(0,0,0,0.2)",
-							"padding": "5px",
-							"backgroundColor": theme.colors.accent,
-							"color": theme.colors.primaryLight,
-							"borderRadius": "5px",
-							"cursor": "pointer",
-							"width": "100%",
-							"fontWeight": "300"
-					}, this.props.style);
-
-					var className = this.props.className;
-
-					return React.createElement("input", {
-							style: style,
-							className: className,
-							type: "button",
-							value: this.props.text,
-							onClick: __buttonClick.bind(this),
-							onMouseEnter: __buttonMouseOver.bind(this),
-							onMouseLeave: __buttonMouseLeave.bind(this)
-
-					});
-			}
-
-	});
-
-	var __buttonClick = function __buttonClick(event) {
-			if (typeof this.props.onClick == "function") {
-					this.props.onClick(this, event);
-			}
-	};
-
-	var __buttonMouseOver = function __buttonMouseOver(event) {
-
-			if (event) {
-					if (!this.state.mouseOver) {
-							this.setState({ mouseOver: true });
-					}
-			}
-	};
-
-	var __buttonMouseLeave = function __buttonMouseLeave(event) {
-
-			if (event) {
-					if (this.state.mouseOver) {
-							this.setState({ mouseOver: false });
-					}
-			}
-	};
-
-	module.exports = Button;
-
-/***/ },
-/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21945,10 +21757,10 @@
 	   Standard theme for the components
 
 	*/
-	var path = __webpack_require__(176);
+	var path = __webpack_require__(175);
 	var ICON_URL = "C:/Users/Obaro/Desktop/FirstReactApp/src/master/icons/";
 
-	var II8n = __webpack_require__(177);
+	var II8n = __webpack_require__(176);
 	var theme = {
 	   name: "standard-theme",
 	   version: "1.0.0",
@@ -21995,7 +21807,7 @@
 	module.exports = theme;
 
 /***/ },
-/* 176 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -22222,12 +22034,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 177 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var en = __webpack_require__(178);
+	var en = __webpack_require__(177);
 
 	module.exports = {
 		"en": en
@@ -22235,7 +22047,7 @@
 	};
 
 /***/ },
-/* 178 */
+/* 177 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22267,14 +22079,294 @@
 	};
 
 /***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	var React = __webpack_require__(1);
+	var Button = __webpack_require__(179);
+	var Image = __webpack_require__(180);
+	var Arrow = __webpack_require__(181);
+	var LineEdit = __webpack_require__(182);
+	var cssStyle = __webpack_require__(183);
+	var defaultTheme = __webpack_require__(174);
+	var Label = __webpack_require__(189);
+
+	var LoginForm = React.createClass({
+	  displayName: "LoginForm",
+
+
+	  getInitialState: function getInitialState() {
+	    return { focus: false };
+	  },
+	  render: function render() {
+	    var _arrow;
+
+	    var theme = Object.assign(defaultTheme, this.props.theme);
+
+	    var style = Object.assign({
+	      "backgroundColor": theme.colors.windowBackground,
+	      "width": "100%",
+	      "height": "auto",
+	      "position": "relative",
+	      "display": "block",
+	      "overflow": "hidden",
+	      "paddingBottom": "20px",
+	      "paddingTop": "20px",
+	      "border": "0px solid #eee",
+	      image: {
+	        width: "70px",
+	        "height": "70px",
+	        "margin": "10px auto auto auto",
+	        "border": "3px solid " + theme.colors.primary,
+	        "borderRadius": "100%",
+	        "position": "relative",
+	        "backgroundColor": theme.colors.primaryLight,
+	        "visibility": this.props.imageSrc && this.props.imageSrc != "" ? "visible" : "hidden",
+	        "display": this.props.imageSrc && this.props.imageSrc != "" ? "block" : "none",
+	        innerImage: {
+	          width: "65px",
+	          height: "65px",
+	          "margin": "3px auto"
+	        }
+
+	      },
+	      error: {
+	        textAlign: "center",
+	        fontSize: "0.8em",
+	        "fontStyle": "italic",
+	        "color": theme.colors.error
+
+	      },
+	      "arrow": (_arrow = {
+	        padding: "0px",
+	        "margin": "0px",
+	        "border": "0px solid blue",
+	        "textAlign": "center"
+	      }, _defineProperty(_arrow, "margin", "10px auto 0px auto"), _defineProperty(_arrow, "overflow", "hidden"), _defineProperty(_arrow, "visibility", this.props.imageSrc && this.props.imageSrc != "" ? "visible" : "hidden"), _defineProperty(_arrow, "display", this.props.imageSrc && this.props.imageSrc != "" ? "block" : "none"), _arrow),
+	      form: {
+	        "border": "2px solid " + theme.colors.primary,
+	        "margin": "0px auto",
+	        "backgroundColor": theme.colors.primary,
+	        "position": "relative",
+	        "width": "85%",
+	        "borderRadius": "2px",
+	        "padding": "5px",
+
+	        fields: {
+	          overflow: "hidden",
+	          "borderRadius": "5px",
+	          "backgroundColor": theme.colors.primaryLight,
+	          "padding": "0px",
+	          "margin": "0px",
+	          "marginBottom": "10px",
+	          "position": "relative",
+	          "display": "block",
+
+	          username: {
+	            borderBottom: "1px solid #e6e6e6",
+	            "paddingLeft": "35px",
+	            "backgroundPosition": "5px center",
+	            "backgroundSize": "15px 15px",
+	            "backgroundRepeat": "no-repeat"
+	          },
+	          "password": {
+	            "paddingLeft": "35px",
+	            "backgroundPosition": "5px center",
+	            "backgroundSize": "15px 15px",
+	            "backgroundRepeat": "no-repeat"
+	          }
+	        },
+
+	        "button": {}
+
+	      }
+
+	    }, this.props.style);
+
+	    return React.createElement(
+	      "div",
+	      { ref: "login", style: style, className: this.props.className, onFocus: __onfocus.bind(this), onBlur: __onBlur.bind(this) },
+	      React.createElement(
+	        "div",
+	        { style: style.image },
+	        React.createElement(Image, { src: this.props.imageSrc || "", style: style.image.innerImage })
+	      ),
+	      React.createElement(
+	        Label,
+	        { theme: theme, style: style.error },
+	        this.props.errorMsg || null
+	      ),
+	      React.createElement(
+	        "div",
+	        { style: style.arrow },
+	        React.createElement(Arrow, null)
+	      ),
+	      React.createElement(
+	        "div",
+	        { style: style.form },
+	        React.createElement(
+	          "div",
+	          { style: style.form.fields },
+	          React.createElement(LineEdit, { onTextChange: __textChange.bind(this), ref: "username",
+	            className: cssStyle.username,
+	            style: style.form.fields.username,
+	            placeholder: theme.II8n.components.login.username }),
+	          React.createElement(LineEdit, { onTextChange: __textChange.bind(this),
+	            ref: "password", className: cssStyle.password,
+	            password: true, style: style.form.fields.password,
+	            placeholder: theme.II8n.components.login.password })
+	        ),
+	        React.createElement(Button, { theme: theme, text: theme.II8n.components.login.submit, style: style.form.button, onClick: __onSubmit.bind(this) })
+	      )
+	    );
+	  }
+
+	});
+
+	LoginForm.prototype.componentDidMount = function (preState, preProps) {
+
+	  if (!this.__eventsAdded) {
+	    this.__eventsAdded = true;
+	    var target = this.refs.login;
+	    target.addEventListener("keypress", function (event) {
+	      __enter.call(this, event);
+	    }.bind(this));
+	  }
+	};
+
+	var __textChange = function __textChange(target, text) {
+	  try {
+	    if (typeof this.props.onTextChange == 'function') {
+	      this.props.onTextChange({ data: __getData.call(this), target: this });
+	    }
+	  } catch (error) {
+	    console.log(error);
+	  }
+	};
+
+	var __onSubmit = function __onSubmit(sender, event) {
+	  if (typeof this.props.onSubmit == 'function') {
+	    this.props.onSubmit({ data: __getData.call(this), target: this });
+	  }
+	};
+
+	var __onfocus = function __onfocus() {
+	  if (!this.state.focus) {
+	    this.setState({ focus: true });
+	  }
+	};
+
+	var __onBlur = function __onBlur(event) {
+	  if (this.state.focus) {
+	    this.setState({ focus: false });
+	  }
+	};
+
+	var __enter = function __enter(event) {
+	  if (this.state.focus) {
+	    var code = event.charCode || event.keyCode;
+	    if (code == 13) {
+	      //submit the form
+	      __onSubmit.call(this, this, event);
+	    }
+	  }
+	};
+
+	var __getData = function __getData() {
+	  var usernameValue = this.refs.username.get();
+	  var passwordValue = this.refs.password.get();
+	  return { username: usernameValue, password: passwordValue };
+	};
+
+	module.exports = LoginForm;
+
+/***/ },
 /* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	var React = __webpack_require__(1);
-	var Path = __webpack_require__(176);
-	var dtheme = __webpack_require__(175);
+	var dtheme = __webpack_require__(174);
+
+	var Button = React.createClass({
+			displayName: "Button",
+
+
+			getInitialState: function getInitialState() {
+					return { mouseOver: false };
+			},
+			render: function render() {
+
+					var theme = Object.assign(dtheme, this.props.theme);
+
+					var style = Object.assign({
+							"border": "0px solid " + theme.colors.accent,
+							"boxShadow": "0px 1px 2px 0px rgba(0,0,0,0.2)",
+							"padding": "5px",
+							"backgroundColor": theme.colors.accent,
+							"color": theme.colors.primaryLight,
+							"borderRadius": "5px",
+							"cursor": "pointer",
+							"width": "100%",
+							"fontWeight": "300"
+					}, this.props.style);
+
+					var className = this.props.className;
+
+					return React.createElement("input", {
+							style: style,
+							className: className,
+							type: "button",
+							value: this.props.text,
+							onClick: __buttonClick.bind(this),
+							onMouseEnter: __buttonMouseOver.bind(this),
+							onMouseLeave: __buttonMouseLeave.bind(this)
+
+					});
+			}
+
+	});
+
+	var __buttonClick = function __buttonClick(event) {
+			if (typeof this.props.onClick == "function") {
+					this.props.onClick(this, event);
+			}
+	};
+
+	var __buttonMouseOver = function __buttonMouseOver(event) {
+
+			if (event) {
+					if (!this.state.mouseOver) {
+							this.setState({ mouseOver: true });
+					}
+			}
+	};
+
+	var __buttonMouseLeave = function __buttonMouseLeave(event) {
+
+			if (event) {
+					if (this.state.mouseOver) {
+							this.setState({ mouseOver: false });
+					}
+			}
+	};
+
+	module.exports = Button;
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+	var Path = __webpack_require__(175);
+	var dtheme = __webpack_require__(174);
 
 	var Image = React.createClass({
 	  displayName: "Image",
@@ -22304,13 +22396,13 @@
 	module.exports = Image;
 
 /***/ },
-/* 180 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	var React = __webpack_require__(1);
-	var dtheme = __webpack_require__(175);
+	var dtheme = __webpack_require__(174);
 
 	var Arrow = React.createClass({
 		displayName: "Arrow",
@@ -22342,7 +22434,7 @@
 	module.exports = Arrow;
 
 /***/ },
-/* 181 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22350,7 +22442,7 @@
 	//line.edit.react.jsx
 
 	var React = __webpack_require__(1);
-	var dtheme = __webpack_require__(175);
+	var dtheme = __webpack_require__(174);
 
 	var LineEdit = React.createClass({
 		displayName: "LineEdit",
@@ -22406,16 +22498,16 @@
 	module.exports = LineEdit;
 
 /***/ },
-/* 182 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(183);
+	var content = __webpack_require__(184);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(187)(content, {});
+	var update = __webpack_require__(188)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -22432,15 +22524,15 @@
 	}
 
 /***/ },
-/* 183 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(184)();
+	exports = module.exports = __webpack_require__(185)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "\r\n\r\n._2zfTn7M8AZPVs6A3D4jdiH{\r\n\r\n background-image:url(" + __webpack_require__(185) + ");\r\n\t\r\n}\r\n\r\n\r\n._3rLQ1zPDP_DjEm8ppfVpa8{\r\n\t background-image:url(" + __webpack_require__(186) + ");\r\n\t\r\n\r\n}", ""]);
+	exports.push([module.id, "\r\n\r\n._2zfTn7M8AZPVs6A3D4jdiH{\r\n\r\n background-image:url(" + __webpack_require__(186) + ");\r\n\t\r\n}\r\n\r\n\r\n._3rLQ1zPDP_DjEm8ppfVpa8{\r\n\t background-image:url(" + __webpack_require__(187) + ");\r\n\t\r\n\r\n}", ""]);
 
 	// exports
 	exports.locals = {
@@ -22449,7 +22541,7 @@
 	};
 
 /***/ },
-/* 184 */
+/* 185 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22504,19 +22596,19 @@
 	};
 
 /***/ },
-/* 185 */
+/* 186 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA1ElEQVRIieWUwQ2EMAwEKYESKOFKogRKoANKoISUEcnelUugBErIfcIHEXLI+aCz5O9O1s666/6izKxX1YnkCsAABBH5NBMHEACkiw5m1rsAqjoVxBOApKqTC5DHUgQA2FyAm/EcbV4HSwUQXABVnSs7mF2A2ohIri5AbUQkFxcgu9hKC3bn4M6Fe/5H5TSfXWxNXn9UvkHtAnYBODvYmwibWV/ageuLxhiHLLxXkpxILjHG4emLq8KPM1G5/b92+fiJyOgUTwCSiIxFAMnV20XAK+sLz7WPgwl6A4sAAAAASUVORK5CYII="
 
 /***/ },
-/* 186 */
+/* 187 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA90lEQVRIieWVTQ3DMAyFC6EQCmEQCmEQCqEQxqAQBmEQerTk9yxDGIRA6A7zdthff9JKmxYphyjW+yz7JS6Kb1juXgKoAbQADgDq1cQB1CTPJHsz6wAcSPYkUzaI5D7E9o93qroL8NPdpOXuJcnzpyxFpCKZRKSaDVDVxsy6sbgoWzsbYGZHVW3G4qKMp9kAkqcpTYxe+BJAvzrA3UtVbVS1Ielm1t3O7zaAlmS6nceydpJD5k4vxcNyueIDyeGlbf8G0JvZcSvA/TGNQZYC7u6ID3D9Erl7GYBteiAi1dS4HBeln7bpckBMsO0ARXGdTpniiQ/D5wJk+h8P23spMAAAAABJRU5ErkJggg=="
 
 /***/ },
-/* 187 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -22768,13 +22860,13 @@
 
 
 /***/ },
-/* 188 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	var React = __webpack_require__(1);
-	var dtheme = __webpack_require__(175);
+	var dtheme = __webpack_require__(174);
 
 	var Label = React.createClass({
 		displayName: "Label",
@@ -22803,7 +22895,7 @@
 	module.exports = Label;
 
 /***/ },
-/* 189 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22811,13 +22903,13 @@
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	var React = __webpack_require__(1);
-	var Button = __webpack_require__(174);
-	var Image = __webpack_require__(179);
-	var Arrow = __webpack_require__(180);
-	var LineEdit = __webpack_require__(181);
-	var cssStyle = __webpack_require__(190);
-	var defaultTheme = __webpack_require__(175);
-	var Label = __webpack_require__(188);
+	var Button = __webpack_require__(179);
+	var Image = __webpack_require__(180);
+	var Arrow = __webpack_require__(181);
+	var LineEdit = __webpack_require__(182);
+	var cssStyle = __webpack_require__(191);
+	var defaultTheme = __webpack_require__(174);
+	var Label = __webpack_require__(189);
 
 	var Register = React.createClass({
 	    displayName: "Register",
@@ -23020,16 +23112,16 @@
 	module.exports = Register;
 
 /***/ },
-/* 190 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(191);
+	var content = __webpack_require__(192);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(187)(content, {});
+	var update = __webpack_require__(188)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -23046,15 +23138,15 @@
 	}
 
 /***/ },
-/* 191 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(184)();
+	exports = module.exports = __webpack_require__(185)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "\r\n\r\n.-izdhDo5V1jAaT0kN6rRa{\r\n\r\n background-image:url(" + __webpack_require__(192) + ");\r\n\t\r\n}\r\n\r\n\r\n._3JaWP1lkQOpbVyFBUJbMeI{\r\n\t background-image:url(" + __webpack_require__(193) + ");\r\n\t\r\n\r\n}\r\n\r\n\r\n\r\n._1i18v_nFGmsJG_L3AT-LES{\r\n\r\n background-image:url(" + __webpack_require__(185) + ");\r\n\t\r\n}\r\n\r\n\r\n._2lKMOo_jU7TOTOEwAKiwJe{\r\n\t background-image:url(" + __webpack_require__(186) + ");\r\n\t\r\n\r\n}\r\n", ""]);
+	exports.push([module.id, "\r\n\r\n.-izdhDo5V1jAaT0kN6rRa{\r\n\r\n background-image:url(" + __webpack_require__(193) + ");\r\n\t\r\n}\r\n\r\n\r\n._3JaWP1lkQOpbVyFBUJbMeI{\r\n\t background-image:url(" + __webpack_require__(194) + ");\r\n\t\r\n\r\n}\r\n\r\n\r\n\r\n._1i18v_nFGmsJG_L3AT-LES{\r\n\r\n background-image:url(" + __webpack_require__(186) + ");\r\n\t\r\n}\r\n\r\n\r\n._2lKMOo_jU7TOTOEwAKiwJe{\r\n\t background-image:url(" + __webpack_require__(187) + ");\r\n\t\r\n\r\n}\r\n", ""]);
 
 	// exports
 	exports.locals = {
@@ -23065,19 +23157,19 @@
 	};
 
 /***/ },
-/* 192 */
+/* 193 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABMklEQVRIic2VTY3EMAyFC6EQCqEQBsJCWChlUAgDYSD0aMl+liEUQiB0L0mVUX6b00Z6l2nqr+8lY09TZpnZ/FS5OklRVd0BGAAH4BrQqap7tjiAj9/kPGREAWRfABHZwoMuu5UF4ABwfTkBcAK4asXNbBaRVwvg03AAXAxIbUVLVd9x1iKy1WDBhZnNgVgERPElEpGtBiCipQkI8RXkiGgZBjDz2rqauai6AUS0dNz9n2FA9Kyo/x1RjwNmXocBfrNVAEfhnX5AzUXu6x8Dpin9J3t9SvsfAwqHnVzPIYCIvHIOVPVdao4lwN39fOfcGgd8R8XMv0WA/+Fu1z6OWv8pyZh5jdr1GccQOuYxWDzohJ+MyejsjKPbTfZ8/NAfHfgXAKeqe3PsmtlMRMtT5Wr9AUCVhtCSQr1UAAAAAElFTkSuQmCC"
 
 /***/ },
-/* 193 */
+/* 194 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABWUlEQVRIibWV3a2DMAyFMwIjMAIjdARGYARG6AaM0BE6Ao+R7GN5hI7ACNwXG6U0BQK9lvySCH/x8Q8hmKlqBeAJYAIwX3UReYTUAIy/CJyF2OtnAPqj4JN7CCGEGGOdUIeLoFFEHi71ByCBtABeJYEBtBZ8Oc8CXK4YY83M/Q5ImbknoiaX+RZgBjAx8y2EEAy0vuutfi2+dN8eYAYwqWrl3SYigwdeNUjWdzMgooaZbwCeMcbaQX5GRI3JUwyYmPlmBV/SZ+Z75qw34CHAC8Bomj9Lu2gTICKDa2uvLB6w9XfLJDNzb9reiajbK96Oe7tOyy5S1cqHxDOx15QM25uLyLDepH751jFE1JnGetDHpZUzwfOvOGs4tqaXiS62rSFZQ1LZzkDSXTLaQD3SDD/+UiVmtdCc7nY3vrXdFUiusH53WqbUvgWxxdZdBmwZgPZfAem/4Yj9AZ3Q578aSj6KAAAAAElFTkSuQmCC"
 
 /***/ },
-/* 194 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -23085,12 +23177,12 @@
 	//app.logo.react.jsx
 
 	var React = __webpack_require__(1);
-	var Label = __webpack_require__(188);
-	var dtheme = __webpack_require__(175);
-	var Seperator = __webpack_require__(195);
-	var Button = __webpack_require__(174);
-	var Image = __webpack_require__(179);
-	var RibbleButton = __webpack_require__(196);
+	var Label = __webpack_require__(189);
+	var dtheme = __webpack_require__(174);
+	var Seperator = __webpack_require__(196);
+	var Button = __webpack_require__(179);
+	var Image = __webpack_require__(180);
+	var RibbleButton = __webpack_require__(197);
 
 	var AppLogo = React.createClass({
 	  displayName: "AppLogo",
@@ -23295,13 +23387,13 @@
 	module.exports = AppLogo;
 
 /***/ },
-/* 195 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	var React = __webpack_require__(1);
-	var dtheme = __webpack_require__(175);
+	var dtheme = __webpack_require__(174);
 
 	var Seperator = React.createClass({
 		displayName: "Seperator",
@@ -23319,15 +23411,15 @@
 	module.exports = Seperator;
 
 /***/ },
-/* 196 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	var React = __webpack_require__(1);
-	var dtheme = __webpack_require__(175);
-	var Image = __webpack_require__(179);
-	var Label = __webpack_require__(188);
+	var dtheme = __webpack_require__(174);
+	var Image = __webpack_require__(180);
+	var Label = __webpack_require__(189);
 
 	var RibbleButton = React.createClass({
 		displayName: "RibbleButton",
@@ -23428,15 +23520,15 @@
 	module.exports = RibbleButton;
 
 /***/ },
-/* 197 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {"use strict";
 
 	var React = __webpack_require__(1);
-	var CloseButton = __webpack_require__(199);
+	var CloseButton = __webpack_require__(200);
 
-	var cssStyle = __webpack_require__(202);
+	var cssStyle = __webpack_require__(203);
 
 	var Dialog = React.createClass({
 		displayName: "Dialog",
@@ -23596,10 +23688,10 @@
 	if (!module && window) {
 		window.jimobama = { "Dialog": Dialog };
 	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(198)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(199)(module)))
 
 /***/ },
-/* 198 */
+/* 199 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -23616,13 +23708,13 @@
 	};
 
 /***/ },
-/* 199 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	var React = __webpack_require__(1);
-	var cssStyle = __webpack_require__(200);
+	var cssStyle = __webpack_require__(201);
 
 	var Button = React.createClass({
 		displayName: "Button",
@@ -23688,16 +23780,16 @@
 	module.exports = Button;
 
 /***/ },
-/* 200 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(201);
+	var content = __webpack_require__(202);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(187)(content, {});
+	var update = __webpack_require__(188)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -23714,10 +23806,10 @@
 	}
 
 /***/ },
-/* 201 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(184)();
+	exports = module.exports = __webpack_require__(185)();
 	// imports
 
 
@@ -23730,16 +23822,16 @@
 	};
 
 /***/ },
-/* 202 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(203);
+	var content = __webpack_require__(204);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(187)(content, {});
+	var update = __webpack_require__(188)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -23756,15 +23848,15 @@
 	}
 
 /***/ },
-/* 203 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(184)();
+	exports = module.exports = __webpack_require__(185)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "._3YOkBi9SUc83fQJNX1_pll{\r\n  border:0px solid #000;\r\n  position:fixed;  \r\n  height:100%;\r\n  top: 0px;\r\n  left:0px;\r\n  overflow: auto;\r\n  background-color:#000000;\r\n  background-color:rgb(0,0,0);\r\n  background-color:rgba(0,0,0,0.2);\r\n  z-index:1;\r\n  padding:0px;\r\n  margin:0px;\r\n  position:relative;\r\n}\r\n\r\n._3YOkBi9SUc83fQJNX1_pll ._2WlPOXdNDCRQ7XW4579uWg{\r\n  margin:0px;\r\n  overflow:hidden;\r\n  padding:0px;\r\n  background-color: #fefefe;\r\n  position:relative;\r\n}\r\n\r\n\r\n\r\n._3YOkBi9SUc83fQJNX1_pll ._2Ey-YuHBS7q4ljgAwIPtdP{\r\n\twidth:40px;\r\n\theight:40px;\r\n\tborder:0px solid red;\r\n\tpadding:2px;\r\n\tposition:absolute;\r\n\tbackground-image:url(" + __webpack_require__(204) + ");\r\n\tbackground-size:20px 20px;\r\n\tbackground-color:#d9d9d9;\r\n\tborder:2px solid #fff;\r\n}\r\n._3YOkBi9SUc83fQJNX1_pll ._2Ey-YuHBS7q4ljgAwIPtdP:hover{\r\n\tbackground-size:25px 25px;\r\n\tbackground-color:#ff9999;\r\n}\r\n@media only screen and (min-width: 866px) \r\n{\r\n\r\n\t._3YOkBi9SUc83fQJNX1_pll ._2WlPOXdNDCRQ7XW4579uWg{\r\n\t  width:60%;\r\n\t}\r\n\r\n}", ""]);
+	exports.push([module.id, "._3YOkBi9SUc83fQJNX1_pll{\r\n  border:0px solid #000;\r\n  position:fixed;  \r\n  height:100%;\r\n  top: 0px;\r\n  left:0px;\r\n  overflow: auto;\r\n  background-color:#000000;\r\n  background-color:rgb(0,0,0);\r\n  background-color:rgba(0,0,0,0.2);\r\n  z-index:1;\r\n  padding:0px;\r\n  margin:0px;\r\n  position:relative;\r\n}\r\n\r\n._3YOkBi9SUc83fQJNX1_pll ._2WlPOXdNDCRQ7XW4579uWg{\r\n  margin:0px;\r\n  overflow:hidden;\r\n  padding:0px;\r\n  background-color: #fefefe;\r\n  position:relative;\r\n}\r\n\r\n\r\n\r\n._3YOkBi9SUc83fQJNX1_pll ._2Ey-YuHBS7q4ljgAwIPtdP{\r\n\twidth:40px;\r\n\theight:40px;\r\n\tborder:0px solid red;\r\n\tpadding:2px;\r\n\tposition:absolute;\r\n\tbackground-image:url(" + __webpack_require__(205) + ");\r\n\tbackground-size:20px 20px;\r\n\tbackground-color:#d9d9d9;\r\n\tborder:2px solid #fff;\r\n}\r\n._3YOkBi9SUc83fQJNX1_pll ._2Ey-YuHBS7q4ljgAwIPtdP:hover{\r\n\tbackground-size:25px 25px;\r\n\tbackground-color:#ff9999;\r\n}\r\n@media only screen and (min-width: 866px) \r\n{\r\n\r\n\t._3YOkBi9SUc83fQJNX1_pll ._2WlPOXdNDCRQ7XW4579uWg{\r\n\t  width:60%;\r\n\t}\r\n\r\n}", ""]);
 
 	// exports
 	exports.locals = {
@@ -23774,92 +23866,10 @@
 	};
 
 /***/ },
-/* 204 */
+/* 205 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAA3pJREFUeJztmU+P20QYh5/XaVqxaImzUg8Lwt7gFVwqLlyQuHKDIxIHJAriT8suX4DPQbdVxYlCrrQVB6QeOHEpAiTEAanKJrEPbBGg2AWkIlEPh921FjeOk8mMI8E8t/j1vDO/J3HkscHhcDgcDofD4XD8H5ElxnrRk1uvKOFp1ZJbo9Hoa2OrmoPtMHw+V/KiIv9xlCSfAUqnj7aAXhhe9ZB3jz7mKC7uJ+OPdPstwlNheFGQyxytXykuD5Pxrk4vLQFBEHTb4v1WGq9QXLAtoReG73nIXmnuXNqnuoPB4N6i/TxzS0MQrkbB1jsGe/6LivBL0dIZlGXZfd/vPC7Ic6WSILy80fEPJln6rYH1FcwKrxRX9kfD6zp9tQQApFn2hd957BkROVcqGZdQ8833h8n4App/gtoCAJVm2XXbEurC78fj88AD3f7LCADLEmyHh+UFwBwSul3/7iRdTEIT4cGMAKiRIPDSIhKaCg/mBIAhCU2GB7MCYB4JfufnSZZ9M21w0+HBvAColSBTJawiPNgRAAtKWFV4KiY0SasXBH1PvFen1JRC7SiQVYWnYlLTzJQwYx3Ww4O9S+Aks+8TVhgemhEAsyWUaSw8NHMJnKQVhVu3gfIuEgCl8tvDJHmBhsJDc78AAKKgt4vwVlVdRJ7o+p27VfcJNmhMQBT03kfUhzWnVd4n2KIRAXOGP6ZRCdYF1ITvAz8Az5aOH0rQ2EUuilUBURDsInKpotzfj8evT7L0xobvR0yVsNguUgdrAg7DezPDAzmgJll6c1USrAiYFV6hPh3G8XkOwxeH6yTYeNAKFgRsh+EO4u1Nq1WEL8qzJNh62mxUwHYY7qjDjc1D1IQvTmtagjEBBsIXpzcpwYiAmvCfDOP4DeYLXwybQ8JPkyz9TnPJBUsLOAp/iWlvbPTCF8ObkLCUAIvhiza2JWgLiILe2whXmBI+R10bxfGbLBf+mFoJ3a4/nqTp9zrNtbbDm5uba2unz/wCrJVrhsOfpBWFWx8Drz00Z57/3jpz+uxgMPhr0aZar8fb7XaHZsMDPDh6UNIvFzzPW/f+9NZ1mmoJSJLkANRXJ49ZDn9MlYQv7xzc+VWnofZ/wKPr6zdPefIIcE9gbxjHH2A3/DFqkqU3Njr+H4gSlHz+t6idLMvuNzC3w+FwOBwOh8PhcDgc/wX+AX8TFdFIL2t/AAAAAElFTkSuQmCC"
-
-/***/ },
-/* 205 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	var React = __webpack_require__(1);
-	//var cssStyle     = require("")
-	var dtheme = __webpack_require__(175);
-
-	var Login = __webpack_require__(172);
-
-	var DashBoard = React.createClass({
-		displayName: "DashBoard",
-
-
-		render: function render() {
-			var _page;
-
-			var theme = Object.assign(dtheme, this.props.theme);
-
-			var style = Object.assign({
-				"backgroundColor": theme.colors.windowBackground,
-				"margin": "0px",
-				"padding": "0px",
-				"width": "100%",
-				"overflow": "auto",
-				"boxSizing": "border-box",
-				"position": "fixed",
-				"height": "100%",
-
-				drawer: {
-					width: "25%",
-					"margin": "0px",
-					"padding": "0px 0px 0px 1px",
-					"borderRight": "1px solid " + theme.colors.primaryDark,
-					"backgroundColor": theme.colors.primary,
-					"height": "100%",
-					"boxSizing": "border-box",
-					"color": theme.colors.primaryLight,
-					"fontWeight": "100",
-					position: "fixed",
-					"zIndex": 1,
-					"left": "0%"
-				},
-				"page": (_page = {
-					width: "75%",
-					"margin": "0px",
-					"padding": "0px 0px 0px 1px",
-					"border": "0px solid #000",
-					"backgroundColor": theme.colors.windowBackground,
-					"minHeight": "300px",
-					"boxSizing": "border-box",
-					"height": "100%",
-					"position": "relative",
-					"zIndex": 0,
-					"left": "25%"
-				}, _defineProperty(_page, "margin", "0px  0px 0px 0px"), _defineProperty(_page, "overflow", "scroll"), _page)
-
-			}, this.props.style);
-
-			return React.createElement(
-				"div",
-				{ style: style },
-				React.createElement(
-					"div",
-					{ style: style.drawer },
-					"..."
-				),
-				React.createElement(
-					"div",
-					{ style: style.page },
-					React.createElement(Login, null)
-				)
-			);
-		}
-	});
-
-	module.exports = DashBoard;
 
 /***/ }
 /******/ ]);

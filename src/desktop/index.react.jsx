@@ -14,10 +14,25 @@ var Dialog     =  require("react-node-modal-dialog");
 
 var IndexPage =React.createClass({
 
+	   getDefaultProps:(function(){
+	   	  var options ={
+		            modal:false,
+		            "lang":"en",
+		            onSubmit:(function(){
+
+		            }),
+		            onChange:(function(){
+
+		            }),
+		            onClose:(function(){
+
+		            }),
+		   	  };
+		return {"options":options};
+	   }),
+
 	  getInitialState:(function(){
-	  	return {isRegister:false, 
-	  		  
-	  	};
+	  	return {isRegister:false};
 	  }),
 	 render:(function(){
 	 	  var theme = Object.assign(dtheme, this.props.theme);
@@ -61,8 +76,8 @@ var IndexPage =React.createClass({
 	 	   },this.props.style);
 
 	 	  return(
-	 	  	<Dialog visible={this.state.visible} fillParent={this.props.modal} modal={this.props.modal} 
-	 	  	 center={this.props.modal} style={style} enableCloseButton={this.props.modal || false} onClose={__onClose.bind(this)}>
+	 	  	<Dialog visible={this.state.visible} fillParent={this.props.options.modal} modal={this.props.options.modal} 
+	 	  	 center={this.props.options.center} style={style} enableCloseButton={this.props.options.modal || false} onClose={__onClose.bind(this)}>
 	 	  	  <div style={ style.leftContent}>
 	 	  	      {__setLeftContent.call(this, style.leftContent, theme)}
 	 	  	  </div>
@@ -91,7 +106,7 @@ var __setRightContent =(function(style, theme){
 	   if(this.state.isRegister){
 	   	  contentHtml =(
 	   	  	      <Register theme={theme} onTextChange={onRegisterChange.bind(this)} 
-			 	  	imageSrc={this.props.imageSrc}  
+			 	  	imageSrc={this.props.options.imageSrc}  
 			 	    style= {style.register} 
 			 	  	onSubmit={onRegister.bind(this)} />);
 	   }else{
@@ -99,7 +114,7 @@ var __setRightContent =(function(style, theme){
 	   		<LoginForm theme={theme} 
 	   			onTextChange={onLoginChange.bind(this)} 
 	   			style={style.login}
-	   			imageSrc={this.props.imageSrc}
+	   			imageSrc={this.props.options.imageSrc}
 	   			onSubmit={onLogin.bind(this)} />
 	   			);
 	   }
@@ -121,8 +136,8 @@ var onLogin =(function(event){
 		var data =Object.assign({
 			 "form":"login",
 		}, event.data);
-		if(typeof this.props.onSubmit=='function'){
-			 this.props.onSubmit(data);
+		if(typeof this.props.options.onSubmit=='function'){
+			 this.props.options.onSubmit(data);
 		}
 
 	}
@@ -140,8 +155,8 @@ var onRegister =(function(event){
 			 "form":"register",
 		}, event.data);
 
-		if(typeof this.props.onSubmit=='function'){
-			 this.props.onSubmit(data);
+		if(typeof this.props.options.onSubmit=='function'){
+			 this.props.options.onSubmit(data);
 		}
 
 	}
@@ -151,11 +166,11 @@ var onRegister =(function(event){
 
 var onLoginChange=(function(event){
 
-	if(typeof this.props.onChange =='function'){
+	if(typeof this.props.options.onChange =='function'){
 		var data =Object.assign({
 			"form":"login"
 		}, event.data)
-		 this.props.onChange(data);
+		 this.props.options.onChange(data);
 	}
 })
 
@@ -164,7 +179,7 @@ var onRegisterChange=(function(event){
 		var data =Object.assign({
 			"form":"register"
 		}, event.data)
-		 this.props.onChange(data);
+		 this.props.options.onChange(data);
 	}
 })
 
@@ -172,14 +187,14 @@ var onRegisterChange=(function(event){
 var __onSwitch=(function(){
 	 if(!this.state.isRegister){
 	 	 this.setState({isRegister:true});
-	 	 if(typeof this.props.onChange=='function'){
-	 	 	 this.props.onChange({activeButton:"login"});
+	 	 if(typeof this.props.options.onChange=='function'){
+	 	 	 this.props.options.onChange({activeButton:"login"});
 	 	 	 
 	 	 }
 	 }else{
 	 	 this.setState({isRegister:false})
-	 	 if(typeof this.props.onChange=='function'){
-	 	 	 this.props.onChange({activeButton:"register"});
+	 	 if(typeof this.props.options.onChange=='function'){
+	 	 	 this.props.options.onChange({activeButton:"register"});
 	 	 }
 	 	
 	 }
@@ -187,8 +202,8 @@ var __onSwitch=(function(){
 
 
 var __onClose=(function(){
-	  if(typeof this.props.onClose  =='function'){
-	  	 var status = this.props.onClose(this);
+	  if(typeof this.props.options.onClose  =='function'){
+	  	 var status = this.props.options.onClose(this);
 	  	 if(status==undefined   || status ==true){
 	  	 	 this.setState({visible:false})
 	  	 }
