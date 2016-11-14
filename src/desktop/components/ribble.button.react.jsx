@@ -17,20 +17,21 @@ var RibbleButton =React.createClass({
 
 		 var style =Object.assign({
 		    ribble:{
-	 	  	 	 margin:"5px",
+	 	  	 	 margin:"5px auto",
 	 	  	 	"borderRadius":"100%",
 	 	  	 	"padding":"0px",
-	 	  	 	"width":(this.props.width || "100px"),
-	 	  	 	"height":(this.props.height || "100px"),
+	 	  	 	"width":(this.props.width || "70px"),
+	 	  	 	"height":(this.props.height || "70px"),
 	 	  	 	"border":"1px solid "+theme.colors.primary,
 	 	  	 	"overflow":"hidden",
 	 	  	 	"textAlign":"center",
 	 	  	 	"backgroundColor":theme.colors.primary,
 	 	  	 	"boxShadow":"1px 2px 6px 0px rgba(0,0,0,0.2)",
 	 	  	 	cursor:"pointer",
+
 	 	  	 image:{
-	 	  	 		width:(this.props.innerWidth || "70px"),
-	 	  	 		"height":(this.props.innerHeight || "70px"),
+	 	  	 		width:(this.props.innerWidth || "40px"),
+	 	  	 		"height":(this.props.innerHeight || "40px"),
 	 	  	 		"margin":"5px auto",
 	 	  	 		"backgroundColor":theme.colors.accent,
 	 	  	 		"padding":"10px",
@@ -38,16 +39,17 @@ var RibbleButton =React.createClass({
 	 	  	  }
 	 	  	 },
 	 	  	 text:{
-	 	  	 	fontSize:"0.8em",
+	 	  	 	fontSize:"1.2em",
 	 	  	 	display:"block",
 	 	  	 	"position":"relative",
 	 	  	 	"border":"0px solid red",
 	 	  	 	"overflow":"hidden",
-	 	  	 	"margin":"2px auto",
+	 	  	 	"margin":"0px auto",
 	 	  	 	"color":(this.state.hover)?(theme.colors.text): (theme.colors.primary),
 	 	  	 	cursor:"pointer",
 	 	  	 	"textAlign":"center",
 	 	  	 	"fontWeight":"bold",
+	 	  	 	"padding":"0px",
 	 	  	 	
 	 	  	 }
 		 },this.props.style);

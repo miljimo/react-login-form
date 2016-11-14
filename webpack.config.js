@@ -7,9 +7,12 @@ const   SOURCE_DIR  = path.resolve(__dirname+"/src");
 
 module.exports ={
 
-	   "entry":SOURCE_DIR+"/index.desktop.js",
+	   "entry":{
+          "browser": SOURCE_DIR+"/index.browser.jsx",
+          "desktop":SOURCE_DIR+"/index.desktop.jsx",
+         },
 	   "output":{
-	   	 "filename":"index.desktop.js",
+	   	 "filename":"index."+"[name].js",
 	   	 "path":BUILD_DIR
 	   },
 	   module:{

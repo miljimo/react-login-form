@@ -18,6 +18,7 @@ var AppLogo = React.createClass({
 	 render:(function(){
 
 	 	  var theme = Object.assign(dtheme, this.props.theme);
+
 	 	  var style =Object.assign({
 	 	  	"display":"block",	 	  	
 	 	  	"position":"relative",	 	  	
@@ -132,12 +133,15 @@ var AppLogo = React.createClass({
 	 	  	"fontStyle":theme.font.style,
 	 	  },
 	 	  navButtons:{
-	 	  	   width:"100px",
-	 	  	   "margin":"10px auto",
+	 	  	   width:"150px",
+	 	  	   "margin":"10px auto 0px auto",
+           "textAlign":"center",
 	 	  	
 	 	  }
 	 	  	
 	 	  });
+
+     
 
            return (<div style={style}>
 

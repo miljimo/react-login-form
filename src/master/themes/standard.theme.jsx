@@ -44,11 +44,13 @@ var theme ={
 
 theme.setII8n =(function(lang){
 	 var themelang= II8n[lang];
-	 if(!themelang)
-	 	  themelang = II8n['en'];
+	 if(!themelang){
+	 	   themelang = II8n['en'];
+     }
+   theme.II8n = themelang;
+   
+});
 
-   this.II8n = themelang	 	
-}).bind(theme)
 
 
 module.exports=theme;
