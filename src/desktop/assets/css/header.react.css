@@ -1,0 +1,65 @@
+:local(.header){
+margin:0px !important;
+padding:0px !important;
+width:100% !important;
+
+}
+
+.local(.header .divLogo){
+ width:100%;
+}
+:local(.header .logo){
+	
+	margin:0px !important;
+	padding:10px !important;
+
+
+}
+:local(.header .logoName){
+	
+   -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: black;
+   color:#0099ff;
+   text-shadow:   -1px -1px 0  #004d80,     1px -1px 0  #004d80,     -1px 1px 0  #004d80,      1px 1px 0  #004d80;
+}
+
+:local(.header .divMenu){
+	width:100%;
+
+}
+:local(.header .logo span){
+	color:#666666 !important;
+	font-style:italic;
+
+}
+
+:local(.header ul){
+	margin:0px;
+	padding:0px;
+	list-style: none;
+
+
+}
+
+:local(.header ul li){
+	float:left;
+	padding:0px;
+	border:0px solid red;
+	margin:0px;
+}
+
+
+@media only screen  and (min-width:768px){
+
+	:local(.header .divLogo){
+		width:30%;
+		float:left;
+	}
+
+	:local(.header .divMenu){
+		width:68%;		
+		float:left;
+		
+    }
+}

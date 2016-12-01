@@ -7,6 +7,8 @@ var LineEdit  = require("../line.edit.react.jsx");
 var cssStyle  = require("../../assets/css/register.react.css");
 var defaultTheme     = require("../../../master/themes/standard.theme.jsx");
 var Label      = require("../label.react.jsx");
+var Seperator  = require("../seperator.react.jsx");
+var Link      = require("../link.react.jsx");
 
 
 
@@ -15,6 +17,9 @@ var Label      = require("../label.react.jsx");
 
 var Register = React.createClass({
 
+     getDefaultProps:(function(){
+      return {imageSrc:"default"}
+     }),
      getInitialState:(function(){
        return {focus:false}
 
@@ -23,8 +28,7 @@ var Register = React.createClass({
           var  theme  =Object.assign(defaultTheme, this.props.theme);
 
           var  style  =Object.assign({
-          	"backgroundColor":theme.colors.windowBackground,
-          	"width":"100%",
+          	"backgroundColor":"#fff",
           	"height":"auto",
           	"position":"relative",
           	"display":"block",
@@ -32,21 +36,28 @@ var Register = React.createClass({
             "paddingBottom":"20px",
             "paddingTop":"20px",
             "border":"0px solid #eee",
+            title:{
+               fontSize:"1.6em",
+               padding:"4px",
+               "display":"block",
+               textAlign:"center",
+               "textShadow":"0px 0px 1px rgba(0,0,0,0.2)",
+            },
           	image:{
           		 width:"70px",
-          		"height":"70px",
-          		"margin":"10px auto auto auto",
-          		"border":"3px solid "+theme.colors.primary,
-          		"borderRadius":"100%",
-          		"position":"relative",
-              "cursor":"pointer",
-          		"backgroundColor":theme.colors.primaryLight,
+              "height":"70px",
+              "margin":"20px auto auto auto",
+              "border":"3px solid #d9d9d9",
+              "borderRadius":"100%",
+              "position":"relative",
+              "backgroundColor":theme.colors.windowBackground,
               "visibility":(this.props.imageSrc && this.props.imageSrc !="")?"visible":"hidden",
               "display":(this.props.imageSrc && this.props.imageSrc !="")?"block":"none",
               innerImage:{
                  width:"65px",
                  height:"65px",
-                 "margin":"3px auto"
+                 "margin":"3px auto",
+                 "backgroundColor":"#f2f2f2",
               }
 
           	},
@@ -69,9 +80,9 @@ var Register = React.createClass({
 
             },
           	form:{
-          		"border":"2px solid "+theme.colors.primary,
+          		"border":"1px solid #d9d9d9",
           		"margin":"0px auto",
-          		"backgroundColor":theme.colors.primary,
+          		"backgroundColor":theme.colors.windowBackground,
           		"position":"relative",
           		"width":"85%",
               "borderRadius":"2px",
@@ -80,7 +91,7 @@ var Register = React.createClass({
                     fields:{
                          overflow:"hidden",
                          "borderRadius":"5px",
-                         "backgroundColor":theme.colors.primaryLight,
+                         "backgroundColor":"white",
                          "padding":"0px",
                          "margin":"0px",
                          "marginBottom":"10px",
@@ -89,25 +100,52 @@ var Register = React.createClass({
 
                          username:{
                               borderBottom:"1px solid #e6e6e6",
-                              "paddingLeft":"35px",
+                              "paddingLeft":"10px",
                               "backgroundPosition":"5px center",
                               "backgroundSize":"15px 15px",
                               "backgroundRepeat":"no-repeat",
+                              color:"#737373",
+                              "padding":"5px",
+                              "backgroundColor":"#fff",
                          },
                          "password":{
-                              "paddingLeft":"35px",
+                              "paddingLeft":"10px",
                               "backgroundPosition":"5px center",
                               "backgroundSize":"15px 15px",
                               "backgroundRepeat":"no-repeat",
+                              borderBottom:"1px solid #e6e6e6",
+                              color:"#737373",
+                               "padding":"5px",
+                               "backgroundColor":"#fff",
                          }
                     },
 
                   "button":{
+                    "backgroundColor":"#0099ff",
+                     "color":"#e6f5ff"
 
                   }
 
                    
-          	}
+          	},
+
+            seperator:{
+               marginTop:"20px",
+               "border":"1px solid #e6e6e6",
+            },
+
+            linkToLogin:{
+
+              color:"#e67300",
+              padding:"10px",
+              "margin":"0px",
+              "width":"85%",
+              "display":"block",
+              "textAlign":"right",
+              "position":"block",
+              fontSize:"0.9em",
+              "fontStyle":"italic",
+            }
 
 
     
@@ -115,7 +153,18 @@ var Register = React.createClass({
 
 
      	   return (
-     	   	   <div  ref='login' style={style} className={this.props.className} onFocus={__onfocus.bind(this)} onBlur={__onBlur.bind(this)} >
+     	   	   <div  
+                 ref='login' 
+                 style={style} 
+                 className={cssStyle.register+" "+ this.props.className} 
+                 onFocus={__onfocus.bind(this)} 
+                 onBlur={__onBlur.bind(this)} >
+
+                 <Label style={style.title}>
+                     Create New Account 
+                 </Label>
+
+
      	   	      <div style={style.image}>
                        <Image   src={this.props.imageSrc || ""} style={style.image.innerImage}/>
      	   	      </div>
@@ -126,33 +175,43 @@ var Register = React.createClass({
                     </div>
           	   	<div style={style.form}>
                       <div style={style.form.fields}>
-                          <LineEdit onTextChange={__textChange.bind(this)}  ref="fullname"  
+                          <LineEdit onTextChange={__textChange.bind(this)}  ref="firstname"  
                                     className={cssStyle.fullname} 
                                     style={style.form.fields.username}  
-                                    placeholder={theme.II8n.components.register.fullname}/>
+                                    placeholder={"Firstname"}/>
+                         <LineEdit onTextChange={__textChange.bind(this)}  ref="lastname"  
+                                    className={cssStyle.fullname} 
+                                    style={style.form.fields.username}  
+                                    placeholder={"Lastname"}/>
+
                          <LineEdit onTextChange={__textChange.bind(this)} 
                                     ref="email"  
                                     className={cssStyle.email} 
                                     style={style.form.fields.username}  
-                                    placeholder={theme.II8n.components.register.email}/>
+                                    placeholder={"Email Address"}/>
                          
-                          <LineEdit onTextChange={__textChange.bind(this)}  
-                                    ref="username"  
-                                    className={cssStyle.username} 
-                                    style={style.form.fields.username} 
-                                    placeholder={theme.II8n.components.register.username}/>
+                        
 
                           <LineEdit onTextChange={__textChange.bind(this)} 
                                      ref="password" 
                                      className={cssStyle.password}  
                                      password={true} 
                                     style={style.form.fields.password}
-                                    placeholder={theme.II8n.components.register.password}/>
+                                    placeholder={"Password"}/>
+
+                         <LineEdit onTextChange={__textChange.bind(this)} 
+                                     ref="cfpassword" 
+                                     className={cssStyle.password}  
+                                     password={true} 
+                                     style={style.form.fields.password}
+                                     placeholder={"Confirm Password"}/>
                       </div>
 
                          <Button  theme ={theme} text={theme.II8n.components.register.submit}  
                          style={style.form.button} onClick ={__onSubmit.bind(this)} />
           	   	</div>
+                  
+                
      	   	    
      	   	   </div>
      	   	)
@@ -197,11 +256,18 @@ var __onSubmit=(function(sender, event){
 
 
 var __getData= (function(event){
-   var usernameValue  = this.refs.username.get();
-   var passwordValue  = this.refs.password.get();
-   var fullname       = this.refs.fullname.get();
-   var email          = this.refs.email.get();
-   return {username:usernameValue, password:passwordValue, "email":email, "fullname":fullname};
+   var usernameValue   = this.refs.username.get();
+   var passwordValue   = this.refs.password.get();
+   var firstname       = this.refs.firstname.get();
+   var lastname        = this.refs.lastname.get();
+   var cpassword       = this.refs.cpassword.get();
+   var email           = this.refs.email.get();
+   return {username:usernameValue, 
+                 password:passwordValue,
+                 "email":email, 
+                 "lastname":lastname ,
+                  "firstname":firstname ,
+                  "cpassword":cpassword};
 })
 
 

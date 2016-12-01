@@ -7,13 +7,29 @@
 var React =require("react");
 var LoginForm   =  require("./components/forms/login.form.react.jsx");
 var Register    =  require("./components/forms/register.form.react.jsx");
+var IndexHeader     =  require("./components/indexheader.react.jsx");
 var dtheme      =  require("../master/themes/standard.theme.jsx");
-var Template    = require("./components/guest.template.react.jsx");
-import {Router, Route,browserHistory, IndexRoute,hashHistory,Redirect} from "react-router";
+
+
 
 var IndexPage =React.createClass({
 
-	  
+	   getDefaultProps:(function(){
+	   	  var options ={
+		            modal:false,
+		            "lang":"en",
+		            onSubmit:(function(){
+
+		            }),
+		            onChange:(function(){
+
+		            }),
+		            onClose:(function(){
+
+		            }),
+		   	  };
+		return {"options":options};
+	   }),
 
 	  getInitialState:(function(){
 	  	return {isRegister:false};
@@ -23,22 +39,18 @@ var IndexPage =React.createClass({
 	 	  theme.setII8n(this.props.lang);
 
 	 	   var style=Object.assign({	 	   	 
-	 	   	 
-	 	   	 
+	 	   	  padding:"0px",
+	 	   	  margin:"0px",
+	 	   	  width:"100%",
+	 	   	  "position":"relative",	 	   	 
+	 	   	  "overflow":"hidden",
 	 	   },this.props.style);
 
 	 	  return(
-	 	  	
-	 	  	    <Template>
-		 	  	     <Router history={hashHistory}>
-		 	  	     	  <Route  name='home'  path='/' component={LoginForm} />
-		 	  	     	  <Route name='register'  path='user/register' component={Register} />
-                          <Route name='login'     path='/user/login'    component={LoginForm} />
-		 	  	     </Router>
-		 	  	     
-	 	  	    </Template>
-	 	  
-	 	       
+	 	        <div style={style}>
+	 	          <IndexHeader  style={style.header} />
+	 	          <LoginForm />
+	 	        </div>
 	 	  	
 
 	 	  	)

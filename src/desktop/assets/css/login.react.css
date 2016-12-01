@@ -1,9 +1,18 @@
+body,html{
+	margin:0px;
+	padding:0px;
+}
+:local(.login){
+
+	width:100%;
+};
 
 
 :local(.username){
 
  background-image:url("../../../master/icons/user.png");
-	
+
+
 }
 
 
@@ -11,4 +20,13 @@
 	 background-image:url("../../../master/icons/password.png");
 	
 
+}
+
+
+
+@media only screen  and (min-width:768px){
+
+	:local(.login){
+		width:500px;
+	}
 }

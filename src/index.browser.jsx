@@ -1,10 +1,15 @@
 
 var React      = require("react");
 var ReactDom   = require("react-dom");
-var Index      = require("./desktop/index.react.jsx");
-var DashBoard  = require("./desktop/dashboard.react.jsx");
+
+
+var IndexLogin      = require("./desktop/index.react.jsx");
+var IndexRegister      = require("./desktop/components/forms/register.form.react.jsx");
+var LoginForm   =  require("./desktop/components/forms/login.form.react.jsx");
+
 
 const ImageURL  ="C:/Users/Obaro/Desktop/FirstReactApp/src/master/images/defaultuser.png";
+
 var options={
 	 "modal":true,
 	 "center":true,
@@ -34,7 +39,7 @@ var options={
 
 
 
-ReactDom.render(<Index options ={options}  />,  document.getElementById("app"));
+ReactDom.render(<IndexLogin  options ={options}  />,  document.getElementById("app"));
 
 
  

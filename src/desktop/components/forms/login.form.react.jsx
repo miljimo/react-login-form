@@ -7,14 +7,15 @@ var LineEdit  = require("../line.edit.react.jsx");
 var cssStyle  = require("../../assets/css/login.react.css");
 var defaultTheme     = require("../../../master/themes/standard.theme.jsx");
 var Label      = require("../label.react.jsx");
-
-
-
-
+var Seperator  = require("../seperator.react.jsx");
+var Link      = require("../link.react.jsx");
 
 
 var LoginForm = React.createClass({
+     getDefaultProps:(function(){
+       return {imageSrc:"default"}
 
+     }),
      getInitialState:(function(){
        return {focus:false}
 
@@ -23,29 +24,40 @@ var LoginForm = React.createClass({
           var  theme  =Object.assign(defaultTheme, this.props.theme);
 
           var  style  =Object.assign({
-          	"backgroundColor":theme.colors.windowBackground,
-          	"width":"100%",            
-          	"height":"auto",
+          	"backgroundColor":"",
+          	"height":"400px",
           	"position":"relative",
           	"display":"block",
           	"overflow":"hidden",
+            "padding":"5px",
             "paddingBottom":"20px",
             "paddingTop":"20px",
             "border":"0px solid #eee",
+            "margin":"10px auto",
+            title:{
+              fontSize:"1.8em",
+              textAlign:"center",
+              "display":"block",
+              "padding":"2px",
+              "textShadow":"0px 0px 1px rgba(0,0,0,0.2)",
+              "padding":"2px",
+
+            },
           	image:{
           		 width:"70px",
           		"height":"70px",
-          		"margin":"10px auto auto auto",
-          		"border":"3px solid "+theme.colors.primary,
+          		"margin":"20px auto auto auto",
+          		"border":"3px solid #d9d9d9",
           		"borderRadius":"100%",
           		"position":"relative",
-          		"backgroundColor":theme.colors.primaryLight,
+          		"backgroundColor":theme.colors.windowBackground,
               "visibility":(this.props.imageSrc && this.props.imageSrc !="")?"visible":"hidden",
               "display":(this.props.imageSrc && this.props.imageSrc !="")?"block":"none",
               innerImage:{
                  width:"65px",
                  height:"65px",
-                 "margin":"3px auto"
+                 "margin":"3px auto",
+                 "backgroundColor":"#0099ff",
               }
 
           	},
@@ -68,9 +80,9 @@ var LoginForm = React.createClass({
 
             },
           	form:{
-          		"border":"2px solid "+theme.colors.primary,
+          		"border":"2px solid #d9d9d9",
           		"margin":"0px auto",
-          		"backgroundColor":theme.colors.primary,
+          		"backgroundColor":theme.colors.windowBackground,
           		"position":"relative",
           		"width":"85%",
               "borderRadius":"2px",
@@ -79,7 +91,7 @@ var LoginForm = React.createClass({
                     fields:{
                          overflow:"hidden",
                          "borderRadius":"5px",
-                         "backgroundColor":theme.colors.primaryLight,
+                         "backgroundColor":"#fff",
                          "padding":"0px",
                          "margin":"0px",
                          "marginBottom":"10px",
@@ -92,21 +104,68 @@ var LoginForm = React.createClass({
                               "backgroundPosition":"5px center",
                               "backgroundSize":"15px 15px",
                               "backgroundRepeat":"no-repeat",
+                              color:"#737373",
+                              margin:"5px",
+                              "backgroundColor":"#fff",
                          },
                          "password":{
                               "paddingLeft":"35px",
                               "backgroundPosition":"5px center",
                               "backgroundSize":"15px 15px",
                               "backgroundRepeat":"no-repeat",
+                              color:"#737373",
+                              margin:"5px",
+                               "backgroundColor":"#fff",
                          }
                     },
 
                   "button":{
-
+                       "backgroundColor":"#0099ff",
+                       "color":"#e6f5ff"
                   }
 
                    
-          	}
+          	},
+
+            lblforgetpassword:{
+               fontSize:"0.9em",
+               "margin":"10px auto auto auto",
+               "display":"block",
+               "position":"relative",
+               "textAlign":"right",
+               "border":"0px solid red",
+               "padding":"10px",
+               "width":"85%",
+               "fontStyle":"italic",
+               "color":"#ff5c33",
+               cursor:"pointer",
+            },
+            lblRegisterNow:{
+               fontSize:"0.9em",
+               "margin":"10px auto auto auto",
+               "display":"block",
+               "position":"relative",
+               "textAlign":"center",
+               "border":"0px solid red",
+               "padding":"10px",
+               "width":"85%",
+               "fontStyle":"italic",
+               "color":"#663300",
+               cursor:"pointer",
+               "backgroundColor":"#ffbf80",
+
+            },
+
+            linkToRegister:{
+                 width:"85%",
+                "margin":"1px auto",
+                "display":"inline",
+                "border":"0px solid red",
+                "textDecoration":"none",
+                "padding":"5px",
+                 "color":"#6600ff",
+                 "fontWeight":"bold",
+            }
 
 
     
@@ -114,7 +173,14 @@ var LoginForm = React.createClass({
 
 
      	   return (
-     	   	   <div  ref='login' style={style} className={this.props.className} onFocus={__onfocus.bind(this)} onBlur={__onBlur.bind(this)} >
+     	   	   <div  ref='login' style={style}
+               className={cssStyle.login + " "+ this.props.className} 
+               onFocus={__onfocus.bind(this)} onBlur={__onBlur.bind(this)} >
+
+               <Label style={style.title}>
+                 Sign In
+               </Label>
+
      	   	      <div style={style.image}>
                        <Image   src={this.props.imageSrc || ""} style={style.image.innerImage}/>
      	   	      </div>
@@ -134,8 +200,18 @@ var LoginForm = React.createClass({
                                 password={true} style={style.form.fields.password} 
                                 placeholder={theme.II8n.components.login.password}/>
                       </div>
-                         <Button  theme ={theme} text={theme.II8n.components.login.submit}  style={style.form.button} onClick ={__onSubmit.bind(this)} />
+                         <Button  theme ={theme} text={theme.II8n.components.login.submit}  
+                         style={style.form.button} 
+                         onClick ={__onSubmit.bind(this)} />
           	   	</div>
+
+
+                <Label style={style.lblforgetpassword}>
+                   Forget your password or username?
+                </Label>
+             
+
+               
      	   	    
      	   	   </div>
      	   	)

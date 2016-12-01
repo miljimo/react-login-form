@@ -14,7 +14,7 @@ var Arrow = React.createClass({
 	 	 	"borderLeft":"10px solid transparent",
 	 	 	"borderTop":"7px solid transparent",
 	 	 	"borderRight":"10px solid transparent",
-	 	 	"borderBottom":"7px solid "+theme.colors.primary,
+	 	 	"borderBottom":"7px solid "+theme.colors.primaryLight,
 	 	 }, this.props.style);
 	 	 
 	 	return (<div onClick={__onClick.bind(this)} className={this.props.className} style={style} />)

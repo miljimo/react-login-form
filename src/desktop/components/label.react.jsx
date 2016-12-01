@@ -16,11 +16,39 @@ var Label = React.createClass({
 
 	 	  }, this.props.style);
 
-	 	  return (<label  style ={style}> {this.props.children ||  ""}</label>);
+	 	  return (<label  onClick={__onClick.bind(this)}
+	 	                  style ={style}
+	 	                   onMouseEnter={__onMouseOver.bind(this)}
+	 	                  onMouseLeave={__onMouseLeave.bind(this)}>
+	 	                   {this.props.children ||  ""}
+	 	                 
+	 	                  </label>);
 
 	 })
 });
 
 
+
+var __onClick =(function(event){
+
+
+	if(this.props.onClick){
+		 this.props.onClick(event);
+	}
+
+});
+
+var __onMouseOver =(function(event){
+	 if(this.props.onMouseEnter){
+	 	 this.props.onMouseEnter(event);
+	 }
+})
+
+
+var __onMouseLeave =(function(event){
+	 if(this.props.onMouseLeave){
+	 	 this.props.onMouseLeave(event);
+	 }
+})
 
 module.exports =Label;
